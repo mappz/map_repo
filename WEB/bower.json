@@ -1,0 +1,25 @@
+{
+  "name": "MAP (Message At Point)",
+  "version": "1.0.0",
+  "authors": [
+    "Marcin Surowiec <msurowiec@lookatmycode.net>"
+  ],
+  "description": "Projekt zaspołowy MAP",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "ext",
+    "dest"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "bootstrap": "~3.3.5",
+    "angular-bootstrap": "~0.14.2",
+    "angular-leaflet-directive": "~0.9.0",
+    "firebase": "~2.3.1",
+    "angular-animate": "~1.4.7",
+    "angular-route": "~1.4.7"
+  }
+}
