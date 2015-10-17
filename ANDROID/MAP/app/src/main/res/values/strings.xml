@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="menu_items">
+        <item>Logowanie</item>
+        <item>Mapa</item>
+        <item>Grupy</item>
+    </string-array>
+    <string name="title_activity_map">Map</string>
 </resources>
