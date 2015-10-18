@@ -44,6 +44,11 @@ public class MapActivity extends FragmentActivity
         buttonConfirmRadius.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "Wybrano promien=" + editText.getText(), Toast.LENGTH_LONG).show();
+                for (Message message : messages) {
+                    mMap.addMarker(new MarkerOptions()
+                            .position(message.getPosition())
+                            .title(message.getAuthor()));
+                }
             }
         });
     }
@@ -102,11 +107,6 @@ public class MapActivity extends FragmentActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setInfoWindowAdapter(new MapMessageAdapter(messages, getLayoutInflater()));
-        for (Message message : messages) {
-            mMap.addMarker(new MarkerOptions()
-                    .position(message.getPosition())
-                    .title(message.getAuthor()));
-        }
     }
 
     @Override
