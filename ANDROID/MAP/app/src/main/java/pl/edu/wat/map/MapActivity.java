@@ -15,6 +15,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.List;
+
+import pl.edu.wat.map.adapters.MapMessageAdapter;
+
 
 /**
  * Created by Hubert Faszcza on 2015-10-18.
@@ -25,7 +29,7 @@ public class MapActivity extends FragmentActivity
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private Button buttonConfirmRadius;
     private EditText editText;
-
+    private List<Object> messages;
 
 
     @Override
@@ -40,7 +44,6 @@ public class MapActivity extends FragmentActivity
                 Toast.makeText(getApplicationContext(), "Wybrano promien=" + editText.getText(), Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
 
@@ -96,10 +99,13 @@ public class MapActivity extends FragmentActivity
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setInfoWindowAdapter(new MapMessageAdapter(messages, getLayoutInflater()));
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        return false;
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(marker.getPosition(), 17));
+        marker.showInfoWindow();
+        return true;
     }
 }
