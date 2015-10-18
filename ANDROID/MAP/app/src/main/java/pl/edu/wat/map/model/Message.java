@@ -10,6 +10,7 @@ import java.util.Date;
 public class Message {
 
     private String author;
+    private String content;
     private Date date;
     private LatLng position;
 
@@ -29,5 +30,9 @@ public class Message {
 
     public LatLng getPosition() {
         return position;
+    }
+
+    public String getContent() {
+        return content;
     }
 }

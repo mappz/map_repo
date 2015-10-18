@@ -12,6 +12,7 @@ import com.google.android.gms.maps.model.Marker;
 import java.util.List;
 
 import pl.edu.wat.map.R;
+import pl.edu.wat.map.model.Message;
 
 /**
  * Created by Hubert Faszcza on 2015-10-18.
@@ -19,9 +20,9 @@ import pl.edu.wat.map.R;
 public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
 
     private LayoutInflater layoutInflater;
-    private List<Object> messages;
+    private List<Message> messages;
 
-    public MapMessageAdapter(List<Object> messages, LayoutInflater layoutInflater) {
+    public MapMessageAdapter(List<Message> messages, LayoutInflater layoutInflater) {
         this.messages = messages;
         this.layoutInflater = layoutInflater;
     }
@@ -37,17 +38,18 @@ public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
         TextView messageText = ((TextView) view.findViewById(R.id.message_text));
         TextView messageAuthor = ((TextView) view.findViewById(R.id.message_author));
         TextView messageTime = ((TextView) view.findViewById(R.id.message_time));
-
-        return view;
-
+        
         //find message for marker
-       /* for(Object message : messages)
+        for(Message message : messages)
         {
-            if(marker.getPosition().longitude && marker.getPosition().latitude)
+            if(marker.getPosition().longitude == message.getPosition().longitude && marker.getPosition().latitude == message.getPosition().longitude)
             {
-                //set message content to messageText messageAuthor messageTime
-                 break;
+                messageText.setText(message.getContent());
+                messageAuthor.setText(message.getAuthor());
+                messageTime.setText(message.getDate().toString());
+                break;
             }
-        }*/
+        }
+        return view;
     }
 }
