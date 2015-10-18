@@ -42,6 +42,8 @@
     <string name="registration_error">Wystapil blad</string>
 
 
+    <string name="button_confirm_radius">Zatwierdz</string>
+
 
 
 </resources>
