@@ -1,6 +1,9 @@
 package pl.edu.wat.map;
 
-import android.support.annotation.NonNull;
+import android.content.Context;
+import android.location.LocationListener;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,20 +16,17 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import pl.edu.wat.map.adapters.MapMessageAdapter;
 import pl.edu.wat.map.model.Message;
@@ -44,53 +44,28 @@ public class MapActivity extends FragmentActivity
     private List<Message> messages;
     private Firebase ref;
     private MapMessageAdapter adapter;
+    private LocationManager lm;
+    private Location mLocation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-        setUpMapIfNeeded();
         adapter =  new MapMessageAdapter(messages, getLayoutInflater());
+        Firebase.setAndroidContext(this);
         ref = new Firebase("https://dazzling-fire-990.firebaseio.com/messages");
         buttonConfirmRadius = (Button) findViewById(R.id.confirm_radius);
         editText = (EditText) findViewById(R.id.radius);
-        buttonConfirmRadius.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Wybrano promien=" + editText.getText(), Toast.LENGTH_LONG).show();
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot snapshot) {
-                        System.out.println("There are " + snapshot.getChildrenCount() + " blog posts");
-                        Log.e("Count ", "" + snapshot.getChildrenCount());
-
-                        messages = new ArrayList<Message>();
-
-                        for (DataSnapshot postSnapshot: snapshot.getChildren()) {
-                            Message message = postSnapshot.getValue(Message.class);
-                            messages.add(message);
-                        }
-                        adapter.setMessages(messages);
-                        mMap.clear();
-                        for (Message message : messages) {
-                            mMap.addMarker(new MarkerOptions()
-                                    .position(message.getPosition())
-                                    .title(message.getAuthor()));
-                        }
-                    }
-                    @Override
-                    public void onCancelled(FirebaseError firebaseError) {
-                        System.out.println("The read failed: " + firebaseError.getMessage());
-                    }
-                });
-            }
-        });
+       // lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+      //  mLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+       // lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        setUpMapIfNeeded();
     }
 
     /**
@@ -140,6 +115,42 @@ public class MapActivity extends FragmentActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setInfoWindowAdapter(adapter);
+        buttonConfirmRadius.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Wybrano promien=" + editText.getText(), Toast.LENGTH_LONG).show();
+                Double radius = Double.parseDouble(editText.getText().toString());
+                ref
+                        .startAt(Double.valueOf(mLocation.getLatitude() - radius).toString(), "latitude")
+                        .endAt(Double.valueOf(mLocation.getLatitude() + radius).toString(), "latitude")
+                        .startAt(Double.valueOf(mLocation.getLongitude() - radius).toString(), "longtitude")
+                        .endAt(Double.valueOf(mLocation.getLongitude() + radius).toString(), "longtitude");
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        Log.e("Count ", "" + snapshot.getChildrenCount());
+
+                        messages = new ArrayList<Message>();
+
+                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                            Message message = postSnapshot.getValue(Message.class);
+                            messages.add(message);
+                        }
+                        adapter.setMessages(messages);
+                        mMap.clear();
+                        for (Message message : messages) {
+                            mMap.addMarker(new MarkerOptions()
+                                    .position(message.getPosition())
+                                    .title(message.getAuthor()));
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+                        System.out.println("The read failed: " + firebaseError.getMessage());
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -148,4 +159,26 @@ public class MapActivity extends FragmentActivity
         marker.showInfoWindow();
         return true;
     }
+
+    public final LocationListener locationListener = new LocationListener() {
+        public void onLocationChanged(Location location) {
+            mLocation = location;
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+    };
+
 }
