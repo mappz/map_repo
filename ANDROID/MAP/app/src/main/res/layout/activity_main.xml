@@ -19,7 +19,7 @@
         android:layout_marginTop="20dp" />
     <EditText
         android:id="@+id/email"
-        android:hint="email"
+        android:hint="@string/email"
         android:background="@drawable/textview_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
         android:layout_marginTop="20dp" />
     <EditText
         android:id="@+id/password"
-        android:hint="password"
+        android:hint="@string/password"
         android:background="@drawable/textview_border"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,6 +49,11 @@
     <Button
         android:id="@+id/login_anonymously"
         android:text="@string/login_anonymously"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/register"
+        android:text="@string/register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

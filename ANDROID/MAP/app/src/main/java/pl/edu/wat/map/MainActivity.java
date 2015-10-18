@@ -3,7 +3,7 @@ package pl.edu.wat.map;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -31,6 +31,7 @@ public class MainActivity extends ActionBarActivity  {
     private TextView mLoggedInStatusTextView;
     private EditText mEmailEditText;
     private EditText mPasswordEditText;
+    private Button mRegisterButton;
 
 
     /* A dialog that is presented until the Firebase authentication finished. */
@@ -68,6 +69,16 @@ public class MainActivity extends ActionBarActivity  {
 
         mEmailEditText = (EditText) findViewById(R.id.email);
         mPasswordEditText = (EditText) findViewById(R.id.password);
+
+
+        mRegisterButton = (Button) findViewById(R.id.register);
+        mRegisterButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         /* *************************************
@@ -200,6 +211,7 @@ public class MainActivity extends ActionBarActivity  {
             mEmailEditText.setVisibility(View.GONE);
             mPasswordEditText.setVisibility(View.GONE);
             mLoggedInStatusTextView.setVisibility(View.VISIBLE);
+            mRegisterButton.setVisibility(View.GONE);
             /* show a provider specific status text */
             String name = null;
             if (authData.getProvider().equals("anonymous")
@@ -218,7 +230,9 @@ public class MainActivity extends ActionBarActivity  {
             mAnonymousLoginButton.setVisibility(View.VISIBLE);
             mEmailEditText.setVisibility(View.VISIBLE);
             mPasswordEditText.setVisibility(View.VISIBLE);
+            mRegisterButton.setVisibility(View.VISIBLE);
             mLoggedInStatusTextView.setVisibility(View.GONE);
+
         }
         this.mAuthData = authData;
         /* invalidate options menu to hide/show the logout button */
