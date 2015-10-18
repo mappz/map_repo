@@ -27,6 +27,11 @@ public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
         this.layoutInflater = layoutInflater;
     }
 
+    public void setMessages(List<Message> messages)
+    {
+        this.messages = messages;
+    }
+
     @Override
     public View getInfoWindow(Marker marker) {
         return null;
