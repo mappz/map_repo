@@ -4,17 +4,31 @@
     tools:context="pl.infoapps.navinch.activities.MallMapActivity"
     android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/radius"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress" />
+        android:orientation="horizontal">
 
-    <Button android:id="@+id/navigate_button"
-        android:layout_width="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_height="wrap_content"
-        android:text="@string/button_go" />
+        <EditText
+            android:id="@+id/radius"
+            android:layout_width="0dp"
+            android:layout_weight="7"
+            android:layout_height="wrap_content"
+            android:hint="@string/radius_hint"
+            android:inputType="number"/>
+
+
+        <Button android:id="@+id/navigate_button"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_margin="8dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_confirm_radius" />
+
+
+    </LinearLayout>
+
+
 
 
     <fragment
