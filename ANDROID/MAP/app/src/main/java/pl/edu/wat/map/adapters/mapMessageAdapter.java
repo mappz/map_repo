@@ -38,7 +38,7 @@ public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
         TextView messageText = ((TextView) view.findViewById(R.id.message_text));
         TextView messageAuthor = ((TextView) view.findViewById(R.id.message_author));
         TextView messageTime = ((TextView) view.findViewById(R.id.message_time));
-        
+
         //find message for marker
         for(Message message : messages)
         {

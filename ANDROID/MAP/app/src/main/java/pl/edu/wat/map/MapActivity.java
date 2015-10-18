@@ -11,6 +11,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -18,6 +19,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 
 import pl.edu.wat.map.adapters.MapMessageAdapter;
+import pl.edu.wat.map.model.Message;
 
 
 /**
@@ -29,7 +31,7 @@ public class MapActivity extends FragmentActivity
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private Button buttonConfirmRadius;
     private EditText editText;
-    private List<Object> messages;
+    private List<Message> messages;
 
 
     @Override
@@ -100,6 +102,11 @@ public class MapActivity extends FragmentActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setInfoWindowAdapter(new MapMessageAdapter(messages, getLayoutInflater()));
+        for (Message message : messages) {
+            mMap.addMarker(new MarkerOptions()
+                    .position(message.getPosition())
+                    .title(message.getAuthor()));
+        }
     }
 
     @Override
