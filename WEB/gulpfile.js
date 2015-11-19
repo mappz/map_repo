@@ -12,7 +12,7 @@ var base = {
     src : 'src/',
     dest: 'dest/',
     tmp: 'tmp/',
-    bower: 'bower_components'
+    bower: 'ext/'
 };
 var paths = {
     html: ['index.html'],
@@ -77,6 +77,6 @@ gulp.task('default', ['clean'],function(){
 
 });
 
-gulp.task('watch', function() {
+gulp.task('watch',['index'], function() {
     gulp.watch(paths.app.concat(paths.css).concat(paths.js).concat(['src/**/*.html']), ['index']);
 });

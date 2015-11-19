@@ -4,3 +4,4 @@ WEB/ext/
 WEB/.idea/
 WEB/dest/
 WEB/tmp/
+*.swp
