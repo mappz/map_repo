@@ -123,5 +123,5 @@ gulp.task('watch',['index'], function() {
 });
 
 gulp.task('watchDev',['indexDev'], function() {
-    gulp.watch(paths.app.concat(paths.css).concat(paths.js).concat(['src/**/*.html']), ['indexDev']);
+    gulp.watch(["src/**/*.css"].concat(["src/**/*.js"]).concat(['src/**/*.html']), ['indexDev']);
 });
