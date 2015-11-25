@@ -1,12 +1,5 @@
 var registrationModule = angular.module("registrationModule")
 
-registrationModule.factory("Auth", ["$firebaseAuth",
-  function($firebaseAuth) {
-    var ref = new Firebase("https://dazzling-fire-990.firebaseio.com");
-    return $firebaseAuth(ref);
-  }
-]);
-
 registrationModule.controller('registrationController', ['$scope', '$http', 'toastr', 'Auth', function($scope, $http, toastr, Auth) {
     $scope.createUser = function() {
         $scope.message = null;

@@ -6,9 +6,7 @@ messagesModule.config(['$routeProvider', function($routeProvider) {
         controller: 'messagesController',
          resolve: {
             "currentAuth": ["Auth", function(Auth) {
-                console.log("Zaloguj sie");
-                JSON.stringify(Auth);
-              return Auth.$waitForAuth();
+              return Auth.$requireAuth();
             }]
         }
     })
