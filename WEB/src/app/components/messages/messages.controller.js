@@ -1,5 +1,5 @@
 var messagesModule = angular.module("messagesModule");
-messagesModule.controller('messagesController', ['$scope', '$http', function($scope, $http) {
+messagesModule.controller('messagesController', ['$scope', '$http','currentAuth', function($scope, $http,currentAuth) {
     angular.extend($scope, {
         map: {
             lat: 52.253195,

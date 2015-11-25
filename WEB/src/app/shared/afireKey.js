@@ -1,1 +1,1 @@
-var fireKey = "abcdddd"
+var fireKey = "mzmpJIE8cQNoVWmvk4LCQ4dS6doj2FGAGLV1PzjO"
