@@ -1,5 +1,6 @@
 package pl.edu.wat.map.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -21,10 +22,12 @@ public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
 
     private LayoutInflater layoutInflater;
     private List<Message> messages;
+    private Context context;
 
-    public MapMessageAdapter(List<Message> messages, LayoutInflater layoutInflater) {
+    public MapMessageAdapter(List<Message> messages, LayoutInflater layoutInflater, Context context) {
         this.messages = messages;
         this.layoutInflater = layoutInflater;
+        this.context = context;
     }
 
     public void setMessages(List<Message> messages)
@@ -44,16 +47,23 @@ public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
         TextView messageAuthor = ((TextView) view.findViewById(R.id.message_author));
         TextView messageTime = ((TextView) view.findViewById(R.id.message_time));
 
+
         //find message for marker
-        for(Message message : messages)
-        {
-            if(marker.getPosition().longitude == message.getPosition().longitude && marker.getPosition().latitude == message.getPosition().longitude)
-            {
-                messageText.setText(message.getContent());
-                messageAuthor.setText(message.getAuthor());
-                messageTime.setText(message.getDate().toString());
-                break;
+        if(!marker.getTitle().equals(context.getResources().getString(R.string.your_position))) {
+            if(messages != null) {
+                for (Message message : messages) {
+                    if (marker.getPosition().longitude == message.getLongtitude() && marker.getPosition().latitude == message.getLatitude()) {
+                        messageText.setText(message.getContent());
+                        messageAuthor.setText(message.getAuthor());
+                        messageTime.setText(message.getDate().toString());
+                        break;
+                    }
+                }
             }
+        }
+        else {
+            messageText.setText(marker.getTitle());
+            messageAuthor.setText(marker.getPosition().toString());
         }
         return view;
     }

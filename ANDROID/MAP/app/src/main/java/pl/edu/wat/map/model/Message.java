@@ -11,28 +11,40 @@ public class Message {
 
     private String author;
     private String content;
-    private Date date;
-    private LatLng position;
+    private String date;
+    private double latitude;
+    private double longtitude;
 
-    public Message(String author, Date date, LatLng position) {
+    // Required default constructor for Firebase object mapping
+    @SuppressWarnings("unused")
+    private Message() {
+    }
+
+    public Message(String author, String content, String date, double latitude, double longtitude) {
         this.author = author;
+        this.content = content;
         this.date = date;
-        this.position = position;
+        this.latitude = latitude;
+        this.longtitude = longtitude;
     }
 
     public String getAuthor() {
         return author;
     }
 
-    public Date getDate() {
+    public String getContent() {
+        return content;
+    }
+
+    public String getDate() {
         return date;
     }
 
-    public LatLng getPosition() {
-        return position;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public String getContent() {
-        return content;
+    public double getLongtitude() {
+        return longtitude;
     }
 }

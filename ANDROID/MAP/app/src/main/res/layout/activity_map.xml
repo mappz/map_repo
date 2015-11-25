@@ -15,6 +15,7 @@
             android:layout_weight="7"
             android:layout_height="wrap_content"
             android:hint="@string/radius_hint"
+            android:maxLength="3"
             android:inputType="number"/>
 
         <Button android:id="@+id/confirm_radius"

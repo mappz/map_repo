@@ -44,6 +44,9 @@
 
     <string name="button_confirm_radius">Zatwierdz</string>
     <string name="radius_hint">Wartosc promienia</string>
+    <string name="your_position">Jestes tutaj</string>
+    <string name="lat_lang">Wspolrzedne</string>
+
 
 
 

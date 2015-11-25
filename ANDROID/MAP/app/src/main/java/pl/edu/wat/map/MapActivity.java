@@ -19,6 +19,7 @@ import com.firebase.client.ValueEventListener;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -46,13 +47,20 @@ public class MapActivity extends FragmentActivity
     private MapMessageAdapter adapter;
     private LocationManager lm;
     private Location mLocation;
-
+    private MapFragment mapfragment;
+    private LocationManager mLocationManager;
+    private Marker positionMarker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
-        adapter =  new MapMessageAdapter(messages, getLayoutInflater());
+        setUpMapIfNeeded();
+        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10,
+                10, locationListener);
+        adapter =  new MapMessageAdapter(messages, getLayoutInflater(), this);
         Firebase.setAndroidContext(this);
         ref = new Firebase("https://dazzling-fire-990.firebaseio.com/messages");
         buttonConfirmRadius = (Button) findViewById(R.id.confirm_radius);
@@ -60,6 +68,42 @@ public class MapActivity extends FragmentActivity
        // lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
       //  mLocation = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
        // lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 10, locationListener);
+        buttonConfirmRadius.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Wybrano promien=" + editText.getText(), Toast.LENGTH_LONG).show();
+                Double radius = Double.parseDouble(editText.getText().toString());
+                ref
+                        .startAt(Double.valueOf(50 - radius).toString(), "latitude")
+                        .endAt(Double.valueOf(50 + radius).toString(), "latitude");
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        Log.e("Count ", "" + snapshot.getChildrenCount());
+
+                        messages = new ArrayList<Message>();
+
+                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                            Message message = postSnapshot.getValue(Message.class);
+                            messages.add(message);
+                        }
+                        adapter.setMessages(messages);
+                        setUpMapIfNeeded();
+                        mMap.clear();
+                        for (Message message : messages) {
+                            mMap.addMarker(new MarkerOptions()
+                                    .position(new LatLng(message.getLatitude(),
+                                            message.getLongtitude()))
+                                    .title(message.getAuthor()));
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+                        System.out.println("The read failed: " + firebaseError.getMessage());
+                    }
+                });
+            }
+        });
     }
 
 
@@ -85,13 +129,13 @@ public class MapActivity extends FragmentActivity
      */
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
+        if (mapfragment == null) {
             // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
+            mapfragment = (MapFragment) getFragmentManager().findFragmentById(R.id.map);
+            mMap = mapfragment.getMap();
             // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                setUpMap();
+            if (mapfragment != null) {
+                mapfragment.getMapAsync(MapActivity.this);  // This calls OnMapReady(..). (Asynchronously)
             }
         }
     }
@@ -115,42 +159,6 @@ public class MapActivity extends FragmentActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setInfoWindowAdapter(adapter);
-        buttonConfirmRadius.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Wybrano promien=" + editText.getText(), Toast.LENGTH_LONG).show();
-                Double radius = Double.parseDouble(editText.getText().toString());
-                ref
-                        .startAt(Double.valueOf(mLocation.getLatitude() - radius).toString(), "latitude")
-                        .endAt(Double.valueOf(mLocation.getLatitude() + radius).toString(), "latitude")
-                        .startAt(Double.valueOf(mLocation.getLongitude() - radius).toString(), "longtitude")
-                        .endAt(Double.valueOf(mLocation.getLongitude() + radius).toString(), "longtitude");
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot snapshot) {
-                        Log.e("Count ", "" + snapshot.getChildrenCount());
-
-                        messages = new ArrayList<Message>();
-
-                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                            Message message = postSnapshot.getValue(Message.class);
-                            messages.add(message);
-                        }
-                        adapter.setMessages(messages);
-                        mMap.clear();
-                        for (Message message : messages) {
-                            mMap.addMarker(new MarkerOptions()
-                                    .position(message.getPosition())
-                                    .title(message.getAuthor()));
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(FirebaseError firebaseError) {
-                        System.out.println("The read failed: " + firebaseError.getMessage());
-                    }
-                });
-            }
-        });
     }
 
     @Override
@@ -163,6 +171,13 @@ public class MapActivity extends FragmentActivity
     public final LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             mLocation = location;
+            if(positionMarker != null)positionMarker.remove();
+            positionMarker = mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(mLocation.getLatitude(),
+                            mLocation.getLongitude()))
+                    .title(getResources().getString(R.string.your_position)));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                    new LatLng(mLocation.getLatitude(), mLocation.getLongitude()), 17));
         }
 
         @Override
