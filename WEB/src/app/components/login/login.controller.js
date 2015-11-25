@@ -1,6 +1,6 @@
 var loginModule = angular.module("loginModule");
 
-loginModule.controller("loginController", ["$scope","$http",function($scope,$http){
+loginModule.controller("loginController", ["$scope","$http", "toastr", function($scope,$http,toastr){
  var ref = new Firebase("https://dazzling-fire-990.firebaseio.com");
 
   $scope.login = function() {
@@ -9,9 +9,9 @@ loginModule.controller("loginController", ["$scope","$http",function($scope,$htt
        password : $scope.user.password
      }, function(error, authData) {
        if (error) {
-         console.log("Login Failed!", error);
+         toastr.error("Niepoprawne dane logowania!");
        } else {
-         console.log("Authenticated successfully with payload:", authData);
+         toastr.success("Zalogowano pomyślnie!");
        }
      });
      }
