@@ -1,14 +1,18 @@
-/**
- * Created by Marcin Surowiec (msurowiec@lookatmycode.net) on 2015-10-17.
- */
-var map = angular.module('map', ['leaflet-directive']);
+var map = angular.module('map', ['leaflet-directive', 'ngRoute', 'messagesModule','loginModule','firebase','authService','registrationModule','toastr']);
 
-map.controller('mapController', ['$scope', '$http', function($scope, $html) {
-    angular.extend($scope, {
-        map: {
-            lat: 52.253195,
-            lng: 20.899400,
-            zoom: 17
-        }
+map.config(['$routeProvider', function($routeProvider) {
+    $routeProvider.otherwise({
+        redirectTo: '/'
     });
+}]);
+
+map.run(["$rootScope", "$location", function($rootScope, $location) {
+$rootScope.$on("$routeChangeError", function(event, next, previous, error) {
+  // We can catch the error thrown when the $requireAuth promise is rejected
+  // and redirect the user back to the home page
+  console.log("catched")
+  if (error === "AUTH_REQUIRED") {
+    $location.path("/login");
+  }
+});
 }]);
