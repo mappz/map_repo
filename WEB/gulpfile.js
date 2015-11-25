@@ -6,6 +6,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var stripDebug = require('gulp-strip-debug');
 var minifyCSS = require('gulp-minify-css');
+var beautify = require('gulp-beautify');
 
 
 var base = {
@@ -31,7 +32,7 @@ gulp.task('cleanTMP', function() {
 });
 gulp.task('clean',['cleanDest','cleanTMP']);
 
-gulp.task('index',['clean','concatJS','concatCSS','copyBower'], function () {
+gulp.task('idx',['copyApp'], function () {
     var target = gulp.src(paths.html,{cwd: base.src});
     var sources = gulp.src(paths.js.concat(paths.css), {cwd: base.dest, read: false});
 
@@ -42,6 +43,26 @@ gulp.task('index',['clean','concatJS','concatCSS','copyBower'], function () {
         .pipe(gulp.dest('./dest'));
 });
 
+gulp.task('index',['clean','concatJS','concatCSS','copyBower','copyTmpl'], function () {
+    var target = gulp.src(paths.html,{cwd: base.src});
+    var sources = gulp.src(paths.js.concat(paths.css), {cwd: base.dest, read: false});
+
+    return target.pipe(inject(sources,{ addRootSlash: false}))
+            .pipe(wiredep({
+            ignorePath:'../'
+            }))
+        .pipe(gulp.dest('./dest'));
+});
+gulp.task('indexDev',['clean','concatJSDev','concatCSS','copyBower','copyTmpl'], function () {
+    var target = gulp.src(paths.html,{cwd: base.src});
+    var sources = gulp.src(paths.js.concat(paths.css), {cwd: base.dest, read: false});
+
+    return target.pipe(inject(sources,{ addRootSlash: false}))
+            .pipe(wiredep({
+            ignorePath:'../'
+            }))
+        .pipe(gulp.dest('./dest'));
+});
 gulp.task('minifyJS',['clean'],function(){
    return gulp.src(paths.app.concat(paths.js), {cwd: base.src})
        .pipe(stripDebug())
@@ -50,6 +71,12 @@ gulp.task('minifyJS',['clean'],function(){
 });
 gulp.task('concatJS',['minifyJS'],function(){
     return gulp.src(paths.app.concat(paths.js), {cwd: base.tmp})
+        .pipe(concat("scripts.min.js"))
+        .pipe(gulp.dest(base.dest+"/js/"));
+
+});
+gulp.task('concatJSDev',function(){ //bez minifikacji do dev
+    return gulp.src(paths.app.concat(paths.js), {cwd: base.src})
         .pipe(concat("scripts.min.js"))
         .pipe(gulp.dest(base.dest+"/js/"));
 
@@ -70,13 +97,31 @@ gulp.task('copyBower',['clean'], function() {
     gulp.src("**/*", {cwd: base.bower})
         .pipe(gulp.dest(base.dest+'/ext/'));
 });
+gulp.task('copyApp',['clean'],function(){
+    gulp.src("**/*", {cwd: base.src+"/app/"})
+    .pipe(gulp.dest(base.dest+'/app'));
+});
 
-
+gulp.task('copyTmpl',['clean'],function(){
+    gulp.src("**/*.html", {cwd: base.src+"/app/"})
+    .pipe(gulp.dest(base.dest+'/app'));
+});
 
 gulp.task('default', ['clean'],function(){
 
 });
 
+
+gulp.task('bf',function(){
+gulp.src(paths.app,{cwd: base.src})
+    .pipe(beautify({indentSize: 2}))
+    .pipe(gulp.dest(base.src+"app/"));
+});
+
 gulp.task('watch',['index'], function() {
     gulp.watch(paths.app.concat(paths.css).concat(paths.js).concat(['src/**/*.html']), ['index']);
+});
+
+gulp.task('watchDev',['indexDev'], function() {
+    gulp.watch(paths.app.concat(paths.css).concat(paths.js).concat(['src/**/*.html']), ['indexDev']);
 });
