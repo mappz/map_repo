@@ -55,4 +55,9 @@
     <string name="drawer_close">close</string>
     <string name="nav_drawer_title">WITAJ</string>
 
+
+    <string name="subscribe_button_text">SUBSKRYBUJ</string>
+
+
+
 </resources>
