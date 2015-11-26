@@ -17,7 +17,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import pl.edu.wat.map.R;
+import pl.edu.wat.map.R;    
+import pl.edu.wat.map.fragments.GroupsFragment;
 import pl.edu.wat.map.adapters.NavDrawerAdapter;
 import pl.edu.wat.map.fragments.ReadMessagesFragment;
 import pl.edu.wat.map.fragments.SendMessagesFragment;
@@ -102,6 +103,11 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
             case 2:
             {
                 startFramgnet(new SendMessagesFragment(), null);
+                break;
+            }
+            case 3:
+            {
+                startFramgnet(new GroupsFragment(), null);
                 break;
             }
         }
