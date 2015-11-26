@@ -1,5 +1,5 @@
 var messagesModule = angular.module("messagesModule");
-messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth', '$cookies', 'toastr', function($scope, $http, currentAuth, $cookies, toastr) {
+messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth', '$cookies', 'toastr', '$timeout', 'leafletData','fire', function($scope, $http, currentAuth, $cookies, toastr, $timeout, leafletData, Fire) {
     angular.extend($scope, {
         map: {
             lat: 52.253195,
@@ -35,7 +35,7 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
 
     //Odbieranie wszystkich
     var getAll = function() {
-        var ref = new Firebase("https://dazzling-fire-990.firebaseio.com/webMessages");
+        var ref = Fire.all;
 
         ref.once("value", function(data) {
             var tmp = data.val();
@@ -72,23 +72,23 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
 
     //Odbieranie
     var startListening = function() {
-        var ref = new Firebase("https://dazzling-fire-990.firebaseio.com");
-        var webMessages = ref.child("webMessages");
+        var webMessages = Fire.messages;
         webMessages.on("child_added", function(snapshot, prevChildKey) {
+
             var message = snapshot.val();
-        var notOnTheMap = false;
+            var notOnTheMap = false;
             console.log("get message" + message.content);
             if (!$scope.hashMap.has(message.talkId)) {
                 notOnTheMap = true;
             }
             addToHashMap(message);
             updateConversations();
-            if (notOnTheMap==true) {
-            var arrayLength = $scope.conversations.length;
-            var key = null;
-            for (var i = 0; i < arrayLength; i++) {
-            if($scope.conversations[i].talkId==message.talkId) key=i;
-            }
+            if (notOnTheMap == true) {
+                var arrayLength = $scope.conversations.length;
+                var key = null;
+                for (var i = 0; i < arrayLength; i++) {
+                    if ($scope.conversations[i].talkId == message.talkId) key = i;
+                }
                 $scope.markers.push({
                     lat: message.latitude,
                     lng: message.longtitude,
@@ -98,6 +98,14 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
                     message: '<conversation-popup conversation="conversations[' + key + ']"></conversation-popup>'
                 });
             }
+
+            leafletData.getMap().then(function(map) {
+                console.log(map);
+                map._onResize();
+            })
+            $timeout(function() {
+                $(".messages-wrapper").scrollTop($(".messages-wrapper")[0].scrollHeight);
+            }, 0);
         });
     }
 
