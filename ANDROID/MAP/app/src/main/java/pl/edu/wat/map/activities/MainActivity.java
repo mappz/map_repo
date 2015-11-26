@@ -1,11 +1,12 @@
 package pl.edu.wat.map.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-
-import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,19 +15,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
-
-import pl.edu.wat.map.R;
+import pl.edu.wat.map.R;    
 import pl.edu.wat.map.fragments.GroupsFragment;
+import pl.edu.wat.map.adapters.NavDrawerAdapter;
 import pl.edu.wat.map.fragments.ReadMessagesFragment;
 import pl.edu.wat.map.fragments.SendMessagesFragment;
-import pl.edu.wat.map.adapters.NavDrawerAdapter;
 import pl.edu.wat.map.utils.OnMenuItemClickListener;
 
 public class MainActivity extends AppCompatActivity implements OnMenuItemClickListener {
 
     private Toolbar toolbar;
-
+    private boolean isLoggedIn = false;
     private ActionBarDrawerToggle mDrawerToggle;
 
     private RecyclerView mRecyclerView;                           // Declaring RecyclerView
@@ -46,6 +47,9 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setOptionsVisibility();
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        isLoggedIn = sharedPref.getBoolean("loggedn_in", false);
+
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         ReadMessagesFragment readMessagesFragment = new ReadMessagesFragment();
@@ -125,6 +129,13 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         getMenuInflater().inflate(R.menu.menu_main, menu);
         login = menu.findItem(R.id.action_login);
 
+        if(isLoggedIn){
+            login.setTitle("Logout");
+        }
+        else{
+            login.setTitle("Sign in");
+        }
+
         setMEnuVisibility();
         return true;
     }
@@ -137,8 +148,21 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         int id = item.getItemId();
         switch(id) {
             case R.id.action_login: {
-                Intent i = new Intent(getBaseContext(), LoginActivity.class);
-                startActivity(i);
+                if(isLoggedIn) {
+                    login.setTitle("Logout");
+                    Context context = getApplicationContext();
+                    CharSequence text = "Wylogowano";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+                else{
+                    login.setTitle("Sign in");
+                    Intent i = new Intent(getBaseContext(), LoginActivity.class);
+                    startActivity(i);
+                }
+
                 break;
             }
         }
