@@ -1,7 +1,7 @@
 var loginModule = angular.module("loginModule");
 
-loginModule.controller("loginController", ["$scope", "$http", "toastr", '$cookies', function($scope, $http, toastr, $cookies) {
-    var ref = new Firebase("https://dazzling-fire-990.firebaseio.com");
+loginModule.controller("loginController", ["$scope", "$http", "toastr", '$cookies','fire', function($scope, $http, toastr, $cookies, Fire) {
+    var ref = Fire.ref;
 
     $scope.login = function() {
         ref.authWithPassword({

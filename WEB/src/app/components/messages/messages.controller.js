@@ -123,12 +123,10 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
         var leafEvent = args.leafletEvent;
 
         console.log(leafEvent.latlng.lat + " -> " + leafEvent.latlng.lng)
-        var ref = new Firebase("https://dazzling-fire-990.firebaseio.com");
-        var webMessages = ref.child("webMessages");
+        var webMessages = Fire.messages;
         var user = $cookies.getObject('user');
         if (user != null) {
-            var ref = new Firebase("https://dazzling-fire-990.firebaseio.com");
-            var webMessages = ref.child("webMessages");
+            var webMessages = Fire.messages;
             webMessages.push({
                 talkId: guid(),
                 author: user.nick,
