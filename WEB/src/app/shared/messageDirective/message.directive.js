@@ -6,7 +6,7 @@ messageDirectives.directive("conversationPopup", ['$cookies', function($cookies)
             conversation: '='
         },
         templateUrl: 'app/shared/messageDirective/conversation-popup.template.html',
-        controller: function($scope, $element, $attrs, $transclude) {
+        controller: ['$scope','$element','$attrs','$transclude',function($scope, $element, $attrs, $transclude) {
             console.log("Hello");
             console.log($scope.conversation)
             $scope.send = function() {
@@ -27,6 +27,6 @@ messageDirectives.directive("conversationPopup", ['$cookies', function($cookies)
                     toastr.error("Nie można wysłać wiadomości")
                 }
             }
-        },
+        }],
     };
 }]);
