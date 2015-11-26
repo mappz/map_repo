@@ -1,5 +1,5 @@
 var messagesModule = angular.module("messagesModule");
-messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth','$cookies', function($scope, $http, currentAuth,$cookies) {
+messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth', '$cookies', 'toastr', function($scope, $http, currentAuth, $cookies, toastr) {
     angular.extend($scope, {
         map: {
             lat: 52.253195,
@@ -28,9 +28,9 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
                 messages: []
             });
         }
-                        if(value.content!=='<EMPTY>'){
-                            $scope.hashMap.get(value.talkId).messages.push(value);
-                        }
+        if (value.content !== '<EMPTY>') {
+            $scope.hashMap.get(value.talkId).messages.push(value);
+        }
     }
 
     //Odbieranie wszystkich
@@ -74,19 +74,35 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
     var startListening = function() {
         var ref = new Firebase("https://dazzling-fire-990.firebaseio.com");
         var webMessages = ref.child("webMessages");
-
         webMessages.on("child_added", function(snapshot, prevChildKey) {
             var message = snapshot.val();
-
+        var notOnTheMap = false;
             console.log("get message" + message.content);
+            if (!$scope.hashMap.has(message.talkId)) {
+                notOnTheMap = true;
+            }
             addToHashMap(message);
-           // $scope.$apply();
-
             updateConversations();
+            if (notOnTheMap==true) {
+            var arrayLength = $scope.conversations.length;
+            var key = null;
+            for (var i = 0; i < arrayLength; i++) {
+            if($scope.conversations[i].talkId==message.talkId) key=i;
+            }
+                $scope.markers.push({
+                    lat: message.latitude,
+                    lng: message.longtitude,
+                    getMessageScope: function() {
+                        return $scope;
+                    },
+                    message: '<conversation-popup conversation="conversations[' + key + ']"></conversation-popup>'
+                });
+            }
         });
     }
 
     startListening();
+
 
     function guid() {
         function _p8(s) {
@@ -101,22 +117,23 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
         console.log(leafEvent.latlng.lat + " -> " + leafEvent.latlng.lng)
         var ref = new Firebase("https://dazzling-fire-990.firebaseio.com");
         var webMessages = ref.child("webMessages");
-       var user = $cookies.getObject('user');
-                       if (user != null) {
-                           var ref = new Firebase("https://dazzling-fire-990.firebaseio.com");
-                           var webMessages = ref.child("webMessages");
-                           webMessages.push({
-                               talkId: guid(),
-                               author: user.nick,
-                               content: '<EMPTY>',
-                               date: new Date().toLocaleString(),
-                               latitude: leafEvent.latlng.lat,
-                               longtitude: leafEvent.latlng.lng,
-                               img: user.img
-                           });
-                       } else {
-                           toastr.error("Nie można wysłać wiadomości")
-                       }
+        var user = $cookies.getObject('user');
+        if (user != null) {
+            var ref = new Firebase("https://dazzling-fire-990.firebaseio.com");
+            var webMessages = ref.child("webMessages");
+            webMessages.push({
+                talkId: guid(),
+                author: user.nick,
+                content: '<EMPTY>',
+                date: new Date().toLocaleString(),
+                latitude: leafEvent.latlng.lat,
+                longtitude: leafEvent.latlng.lng,
+                img: user.img
+            });
+            toastr.success("Wiadomość wysłana");
+        } else {
+            toastr.error("Nie można wysłać wiadomości")
+        }
     });
 
 }]);

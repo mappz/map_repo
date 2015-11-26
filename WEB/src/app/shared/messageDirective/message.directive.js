@@ -1,12 +1,12 @@
 var messageDirectives = angular.module('messageDirective', []);
-messageDirectives.directive("conversationPopup", ['$cookies', function($cookies) {
+messageDirectives.directive("conversationPopup", ['$cookies', 'toastr', function($cookies, toastr) {
     return {
         restrict: 'E',
         scope: {
             conversation: '='
         },
         templateUrl: 'app/shared/messageDirective/conversation-popup.template.html',
-        controller: ['$scope','$element','$attrs','$transclude',function($scope, $element, $attrs, $transclude) {
+        controller: ['$scope', '$element', '$attrs', '$transclude', function($scope, $element, $attrs, $transclude) {
             console.log("Hello");
             console.log($scope.conversation)
             $scope.send = function() {
@@ -23,6 +23,7 @@ messageDirectives.directive("conversationPopup", ['$cookies', function($cookies)
                         longtitude: $scope.conversation.longtitude,
                         img: user.img
                     });
+                    toastr.success("Nie można wysłać wiadomości")
                 } else {
                     toastr.error("Nie można wysłać wiadomości")
                 }
