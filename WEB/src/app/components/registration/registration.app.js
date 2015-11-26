@@ -1,4 +1,4 @@
-var registrationModule = angular.module("registrationModule",[]);
+var registrationModule = angular.module("registrationModule", []);
 
 registrationModule.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/register', {
