@@ -1,4 +1,4 @@
-var map = angular.module('map', ['leaflet-directive', 'ngRoute', 'messagesModule', 'loginModule', 'firebase', 'authService', 'registrationModule', 'toastr']);
+var map = angular.module('map', ['leaflet-directive', 'ngRoute', 'messagesModule', 'loginModule', 'firebase', 'authService', 'registrationModule', 'toastr', 'ngCookies']);
 
 map.config(['$routeProvider', function($routeProvider) {
     $routeProvider.otherwise({

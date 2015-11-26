@@ -1,10 +1,13 @@
-<div ng-repeat="message in conversation.messages track by $index" class="alert message-alert " ng-class="{'alert-success': ($index%2==0),'alert-info':($index%2==1)}" role="alert">
-    <div class="row">
-        <div class="col-md-4">
-            {{message.author}}
-        </div>
-        <div class="col-md-8">
-            {{message.content}}
+<div class="messages-wrapper">
+    <div ng-repeat="message in conversation.messages track by $index" class="alert message-alert " ng-class="{'alert-success': ($index%2==0),'alert-info':($index%2==1)}" role="alert">
+        <div class="row">
+            <div class="col-md-4">
+                <img ng-src="{{message.img}}" alt="..." class="img-circle avatar">
+                {{message.author}}
+            </div>
+            <div class="col-md-8">
+                {{message.content}}
+            </div>
         </div>
     </div>
 </div>
