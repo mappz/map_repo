@@ -6,11 +6,12 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.LatLng;
+
 import com.google.android.gms.maps.model.Marker;
 
 
 import java.util.List;
+
 
 import pl.edu.wat.map.R;
 import pl.edu.wat.map.model.Message;
@@ -62,6 +63,15 @@ public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
             }
         }
         else {
+            TextView title = ((TextView) view.findViewById(R.id.message_text_title));
+            TextView author = ((TextView) view.findViewById(R.id.message_author_title));
+            TextView time = ((TextView) view.findViewById(R.id.message_date_title));
+
+            title.setVisibility(View.GONE);
+            author.setVisibility(View.GONE);
+            time.setVisibility(View.GONE);
+
+
             messageText.setText(marker.getTitle());
             messageAuthor.setText(marker.getPosition().toString());
         }

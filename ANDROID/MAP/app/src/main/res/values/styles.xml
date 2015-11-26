@@ -3,6 +3,13 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="text_title" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@color/textColorTitle</item>
+        <item name="android:textSize">@dimen/text_title_size</item>
     </style>
 
 </resources>
