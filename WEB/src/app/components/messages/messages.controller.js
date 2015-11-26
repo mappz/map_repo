@@ -81,7 +81,9 @@ $scope.markers = new Array();
         webMessages.on("child_added", function(snapshot, prevChildKey) {
           var message = snapshot.val();
 
+         console.log("get message"+ message.content);
           addToHashMap(message);
+         $scope.$apply();
 
           updateConversations();
         });

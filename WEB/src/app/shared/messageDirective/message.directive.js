@@ -9,6 +9,9 @@ messageDirectives.directive("conversationPopup", function(){
     controller: function($scope, $element, $attrs, $transclude) {
        console.log("Hello");
        console.log($scope.conversation)
+       $scope.send = function(){
+         console.log("send message" + $scope.content);
+       }
     },
   };
 });
