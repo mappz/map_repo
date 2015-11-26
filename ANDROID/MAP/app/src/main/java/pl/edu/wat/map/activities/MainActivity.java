@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
     private RecyclerView.LayoutManager mLayoutManager;            // Declaring Layout Manager as a linear layout manager
     private DrawerLayout Drawer;
     private MenuItem login;
-    private String titles[] = {"Wyswietlanie wiadomosci", "Wysylanie wiadomosci"};
+    private String titles[] = {"Wyswietlanie wiadomosci", "Wysylanie wiadomosci",
+            "Grupy"};
 
     private final String TAG = "FRAGMENT REPLACE";
 
