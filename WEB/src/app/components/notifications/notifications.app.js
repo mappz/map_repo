@@ -1,1 +1,1 @@
-var notificationModule = angular.module("notificationModule",[])
+var notificationModule = angular.module("notificationModule", [])

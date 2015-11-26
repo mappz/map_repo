@@ -1,1 +1,1 @@
-var settingsModule = angular.module("settingsModule",[]);
+var settingsModule = angular.module("settingsModule", []);

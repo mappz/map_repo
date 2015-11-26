@@ -5,9 +5,10 @@ messagesModule.controller('messagesController', ['$scope', '$http','currentAuth'
             lat: 52.253195,
             lng: 20.899400,
             zoom: 17
-        }
+        },
     });
 
+$scope.markers = new Array();
     $scope.conversations = [];
 
     //Odbieranie wszystkich
@@ -32,6 +33,15 @@ messagesModule.controller('messagesController', ['$scope', '$http','currentAuth'
             });
 
             console.log($scope.conversations);
+                angular.forEach($scope.conversations,function(value,key){
+        console.log("key: "+ key)
+            $scope.markers.push({
+                lat: value.latitude,
+                lng: value.longtitude,
+                getMessageScope: function () { return $scope; },
+                message: '<conversation-popup conversation="conversations['+key+']"></conversation-popup>'
+            });
+        })
         });
     }
 
@@ -70,5 +80,17 @@ messagesModule.controller('messagesController', ['$scope', '$http','currentAuth'
     }
 
     startListening();
+
+        $scope.$on("leafletDirectiveMap.click", function(event, args) {
+            var leafEvent = args.leafletEvent;
+
+    console.log(leafEvent.latlng.lat+" -> "+leafEvent.latlng.lng )
+            $scope.markers.push({
+                lat: leafEvent.latlng.lat,
+                lng: leafEvent.latlng.lng,
+                getMessageScope: function () { return $scope; },
+                message: '<conversation-popup conversation="conversations"></conversation-popup>'
+            });
+        });
 
 }]);

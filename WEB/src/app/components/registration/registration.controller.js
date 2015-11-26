@@ -11,8 +11,8 @@ registrationModule.controller('registrationController', ['$scope', '$http', 'toa
         }
 
         Auth.$createUser({
-        email: $scope.email,
-        password: $scope.password
+            email: $scope.email,
+            password: $scope.password
         }).then(function(userData) {
             toastr.success("Zostałeś zarejestrowany pomyślnie!");
         }).catch(function(error) {
