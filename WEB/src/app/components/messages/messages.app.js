@@ -1,4 +1,4 @@
-var messagesModule = angular.module('messagesModule', ['leaflet-directive','messageDirective']);
+var messagesModule = angular.module('messagesModule', ['leaflet-directive', 'messageDirective']);
 
 messagesModule.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {
@@ -6,6 +6,7 @@ messagesModule.config(['$routeProvider', function($routeProvider) {
         controller: 'messagesController',
         resolve: {
             "currentAuth": ["Auth", function(Auth) {
+                console.log(Auth)
                 return Auth.$requireAuth();
             }]
         }

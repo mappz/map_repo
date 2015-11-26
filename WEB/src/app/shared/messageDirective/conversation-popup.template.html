@@ -1,10 +1,13 @@
-<div ng-repeat="message in conversation.messages track by $index" class="alert message-alert " ng-class="{'alert-success': ($index%2==0),'alert-info':($index%2==1)}" role="alert">
-    <div class="row">
-        <div class="col-md-4">
-            {{message.author}}
-        </div>
-        <div class="col-md-8">
-            {{message.content}}
+<div class="messages-wrapper">
+    <div ng-repeat="message in conversation.messages track by $index" class="alert message-alert " ng-class="{'alert-success': ($index%2==0),'alert-info':($index%2==1)}" role="alert">
+        <div class="row">
+            <div class="col-md-4 text-center">
+                <img ng-src="{{message.img}}" alt="..." class="img-circle avatar">
+                {{message.author}}
+            </div>
+            <div class="col-md-8">
+                {{message.content}}
+            </div>
         </div>
     </div>
 </div>
@@ -15,7 +18,7 @@
                 <label for="message" class="sr-only">Password</label>
                 <input type="text" class="form-control" id="message" placeholder="type something..." ng-model="content">
             </div>
-            <button type="submit" class="btn btn-default" ng-click="send()">Send</button>
+            <button class="btn btn-default" ng-click="send()">Send</button>
         </form>
     </div>
 </div>

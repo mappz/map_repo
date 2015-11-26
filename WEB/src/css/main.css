@@ -11,3 +11,10 @@ color: #ffff;
 div.message-alert {
 margin-bottom: 5px;
 }
+.messages-wrapper{
+overflow-y:scroll;
+height:400px;
+margin-bottom: 10px;
+}
+.avatar {
+width: 30px;}
