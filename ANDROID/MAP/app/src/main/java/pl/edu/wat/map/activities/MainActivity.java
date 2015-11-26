@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import pl.edu.wat.map.R;    
+import pl.edu.wat.map.R;
 import pl.edu.wat.map.fragments.GroupsFragment;
 import pl.edu.wat.map.adapters.NavDrawerAdapter;
 import pl.edu.wat.map.fragments.ReadMessagesFragment;
