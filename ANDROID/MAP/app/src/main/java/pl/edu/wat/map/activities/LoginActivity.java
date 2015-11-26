@@ -1,4 +1,4 @@
-package pl.edu.wat.map;
+package pl.edu.wat.map.activities;
 
 
 import android.app.AlertDialog;
@@ -20,9 +20,11 @@ import com.firebase.client.FirebaseError;
 
 import java.util.Map;
 
-public class MainActivity extends ActionBarActivity  {
+import pl.edu.wat.map.R;
 
-    private static final String TAG = MainActivity.class.getSimpleName();
+public class LoginActivity extends ActionBarActivity  {
+
+    private static final String TAG = LoginActivity.class.getSimpleName();
 
     /* *************************************
      *              GENERAL                *
@@ -64,7 +66,7 @@ public class MainActivity extends ActionBarActivity  {
         super.onCreate(savedInstanceState);
         Firebase.setAndroidContext(getApplicationContext());
         /* Load the view and display it */
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
 
         mEmailEditText = (EditText) findViewById(R.id.email);
@@ -160,10 +162,10 @@ public class MainActivity extends ActionBarActivity  {
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
-        if (id == R.id.action_logout) {
+        /*if (id == R.id.action_logout) {
             logout();
             return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

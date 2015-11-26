@@ -47,7 +47,12 @@
     <string name="your_position">Jestes tutaj</string>
     <string name="lat_lang">Wspolrzedne</string>
 
+    <string name="message_content">Tresc: </string>
+    <string name="message_author">Autor: </string>
+    <string name="message_date">Data: </string>
 
-
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="nav_drawer_title">WITAJ</string>
 
 </resources>

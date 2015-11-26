@@ -1,4 +1,4 @@
-package pl.edu.wat.map;
+package pl.edu.wat.map.activities;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -12,6 +12,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
 import java.util.Map;
+
+import pl.edu.wat.map.R;
 
 /**
  * Created by marcel on 2015-10-18.

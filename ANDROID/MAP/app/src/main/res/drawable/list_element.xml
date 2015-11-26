@@ -1,0 +1,12 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- pressed -->
+    <item android:state_pressed="true"
+        android:drawable="@color/nav_list_element_background_focused"/>
+
+    <!-- focused -->
+    <item android:state_focused="true"
+        android:drawable="@color/nav_list_element_background_focused"/>
+
+    <!-- default -->
+    <item android:drawable="@color/nav_list_element_background"/>
+</selector>
