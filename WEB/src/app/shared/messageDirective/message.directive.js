@@ -23,7 +23,6 @@ messageDirectives.directive("conversationPopup", ['$cookies', 'toastr', function
                         longtitude: $scope.conversation.longtitude,
                         img: user.img
                     });
-                    toastr.success("Nie można wysłać wiadomości")
                 } else {
                     toastr.error("Nie można wysłać wiadomości")
                 }

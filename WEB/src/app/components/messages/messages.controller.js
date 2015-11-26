@@ -130,7 +130,7 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
                 longtitude: leafEvent.latlng.lng,
                 img: user.img
             });
-            toastr.success("Wiadomość wysłana");
+            toastr.success("Konwersacja utworzona");
         } else {
             toastr.error("Nie można wysłać wiadomości")
         }
