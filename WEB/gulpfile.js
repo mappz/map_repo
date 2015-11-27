@@ -181,6 +181,7 @@ gulp.task('serveDev', function() {
 gulp.task('serve', function() {
     gulp.src(base.dest)
         .pipe(webserver({
+            host: '0.0.0.0',
             port: 80
         }));
 });
