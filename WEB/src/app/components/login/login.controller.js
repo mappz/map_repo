@@ -21,6 +21,8 @@ loginModule.controller("loginController", ["$scope", "$http", "toastr", '$cookie
                 console.log("cookie created")
                 toastr.success("Zalogowano pomyślnie!");
             }
+        },{
+            remember: "sessionOnly"
         });
     }
 }]);
