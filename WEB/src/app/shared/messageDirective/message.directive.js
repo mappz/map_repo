@@ -1,12 +1,12 @@
 var messageDirectives = angular.module('messageDirective', []);
-messageDirectives.directive("conversationPopup", ['$cookies', 'toastr','fire', function($cookies, toastr,Fire) {
+messageDirectives.directive("conversationPopup", ['$cookies', 'toastr', 'fire', function($cookies, toastr, Fire) {
     return {
         restrict: 'E',
         scope: {
             conversation: '='
         },
         templateUrl: 'app/shared/messageDirective/conversation-popup.template.html',
-        controller: ['$scope', '$element', '$attrs', '$transclude','$timeout', function($scope, $element, $attrs, $transclude,$timeout) {
+        controller: ['$scope', '$element', '$attrs', '$transclude', '$timeout', function($scope, $element, $attrs, $transclude, $timeout) {
             console.log("Hello");
             console.log($scope.conversation)
             $scope.send = function() {
@@ -22,10 +22,10 @@ messageDirectives.directive("conversationPopup", ['$cookies', 'toastr','fire', f
                         longtitude: $scope.conversation.longtitude,
                         img: user.img
                     });
-		$scope.content="";	
-$timeout(function(){
-$(".messages-wrapper").scrollTop($(".messages-wrapper")[0].scrollHeight);
-},0);
+                    $scope.content = "";
+                    $timeout(function() {
+                        $(".messages-wrapper").scrollTop($(".messages-wrapper")[0].scrollHeight);
+                    }, 0);
                 } else {
                     toastr.error("Nie można wysłać wiadomości")
                 }

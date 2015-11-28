@@ -1,13 +1,36 @@
 var messagesModule = angular.module("messagesModule");
-messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth', '$cookies', 'toastr', '$timeout', 'leafletData','fire', function($scope, $http, currentAuth, $cookies, toastr, $timeout, leafletData, Fire) {
+messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth', '$cookies', 'toastr', '$timeout', 'leafletData', 'fire', 'leafletMarkersHelpers', function($scope, $http, currentAuth, $cookies, toastr, $timeout, leafletData, Fire, leafletMarkersHelpers) {
     angular.extend($scope, {
         map: {
             lat: 52.253195,
             lng: 20.899400,
             zoom: 17
         },
+        layers: {
+            baselayers: {
+                osm: {
+                    name: 'OpenStreetMap',
+                    type: 'xyz',
+                    url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                }
+            },
+            overlays: {
+                messages: {
+                    name: "Real world data",
+                    type: "markercluster",
+                    visible: true
+                }
+            }
+        }
     });
+    $scope.$on('$destroy', function() {
+        console.log("Reset marker groups")
+        leafletMarkersHelpers.resetMarkerGroups();
+        leafletData.getMap().then(function(map) {
 
+        })
+    });
+    console.log("Messages controller ***********************************************")
     $scope.markers = new Array();
     $scope.conversations = [];
     $scope.hashMap = new HashMap();
@@ -48,6 +71,7 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
             angular.forEach($scope.conversations, function(value, key) {
                 console.log("key: " + key)
                 $scope.markers.push({
+                    // layer: 'messages',
                     lat: value.latitude,
                     lng: value.longtitude,
                     getMessageScope: function() {
@@ -90,6 +114,7 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
                     if ($scope.conversations[i].talkId == message.talkId) key = i;
                 }
                 $scope.markers.push({
+                    // layer: 'messages',
                     lat: message.latitude,
                     lng: message.longtitude,
                     getMessageScope: function() {
@@ -104,7 +129,9 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
                 map._onResize();
             })
             $timeout(function() {
-                $(".messages-wrapper").scrollTop($(".messages-wrapper")[0].scrollHeight);
+                if ($(".messages-wrapper").length > 0) {
+                    $(".messages-wrapper").scrollTop($(".messages-wrapper")[0].scrollHeight);
+                }
             }, 0);
         });
     }

@@ -1,6 +1,6 @@
 var loginModule = angular.module("loginModule");
 
-loginModule.controller("loginController", ["$scope", "$http", "toastr", '$cookies','fire', function($scope, $http, toastr, $cookies, Fire) {
+loginModule.controller("loginController", ["$scope", "$http", "toastr", '$cookies', 'fire', '$location', function($scope, $http, toastr, $cookies, Fire, $location) {
     var ref = Fire.ref;
 
     $scope.login = function() {
@@ -9,7 +9,7 @@ loginModule.controller("loginController", ["$scope", "$http", "toastr", '$cookie
             password: $scope.user.password
         }, function(error, authData) {
             if (error) {
-                toastr.error("Niepoprawne dane logowania!");
+                toastr.error("User or password are incorrect");
             } else {
                 console.log(authData)
                 console.log("Creating cookies")
@@ -19,9 +19,10 @@ loginModule.controller("loginController", ["$scope", "$http", "toastr", '$cookie
                     img: authData.password.profileImageURL
                 });
                 console.log("cookie created")
-                toastr.success("Zalogowano pomyślnie!");
+                toastr.success("Logged in");
+                $location.path("/");
             }
-        },{
+        }, {
             remember: "sessionOnly"
         });
     }

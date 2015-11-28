@@ -5,7 +5,7 @@ authService.factory("Auth", ["$firebaseAuth", "fire",
         return $firebaseAuth(ref);
     }
 ]);
-authService.controller("authController", ['$scope', '$rootScope', 'Auth', '$location', 'fire', '$cookies','toastr', function($scope, $rootScope, Auth, $location, Fire, $cookies, toastr) {
+authService.controller("authController", ['$scope', '$rootScope', 'Auth', '$location', 'fire', '$cookies', 'toastr', function($scope, $rootScope, Auth, $location, Fire, $cookies, toastr) {
     $rootScope.$on('$locationChangeSuccess', function(event) {
         $scope.auth = Auth.$getAuth();
     })

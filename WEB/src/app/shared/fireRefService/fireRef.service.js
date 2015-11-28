@@ -6,11 +6,11 @@ fireService.factory("fire", function() {
 
     var ref_x = new Firebase(applicationURL);
     var messages_x = ref_x.child(messageModel);
-    var all_x = new Firebase(applicationURL+"/"+messageModel);
+    var all_x = new Firebase(applicationURL + "/" + messageModel);
 
     return {
         ref: ref_x,
         messages: messages_x,
-	all: all_x
+        all: all_x
     }
 });
