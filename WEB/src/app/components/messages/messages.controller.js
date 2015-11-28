@@ -56,35 +56,35 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
         }
     }
 
-    //Odbieranie wszystkich
-    var getAll = function() {
-        var ref = Fire.all;
-
-        ref.once("value", function(data) {
-            var tmp = data.val();
-
-            angular.forEach(tmp, function(value, key) {
-                addToHashMap(value);
-            });
-
-            console.log($scope.conversations);
-            angular.forEach($scope.conversations, function(value, key) {
-                console.log("key: " + key)
-                $scope.markers.push({
-                    // layer: 'messages',
-                    lat: value.latitude,
-                    lng: value.longtitude,
-                    getMessageScope: function() {
-                        return $scope;
-                    },
-                    message: '<conversation-popup conversation="conversations[' + key + ']"></conversation-popup>'
-                });
-            })
-            updateConversations();
-        });
-    }
-
-    getAll();
+//    //Odbieranie wszystkich
+//    var getAll = function() {
+//        var ref = Fire.all;
+//
+//        ref.once("value", function(data) {
+//            var tmp = data.val();
+//
+//            angular.forEach(tmp, function(value, key) {
+//                addToHashMap(value);
+//            });
+//
+//            console.log($scope.conversations);
+//            angular.forEach($scope.conversations, function(value, key) {
+//                console.log("key: " + key)
+//                $scope.markers.push({
+//                    // layer: 'messages',
+//                    lat: value.latitude,
+//                    lng: value.longtitude,
+//                    getMessageScope: function() {
+//                        return $scope;
+//                    },
+//                    message: '<conversation-popup conversation="conversations[' + key + ']"></conversation-popup>'
+//                });
+//            })
+//            updateConversations();
+//        });
+//    }
+//
+//  //  getAll();
 
     //Wysyłanie
     $scope.sendMessage = function() {
