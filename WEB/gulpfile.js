@@ -171,7 +171,7 @@ gulp.task('watchDev', ['indexDev'], function() {
     gulp.watch(["src/**/*.css"].concat(["src/**/*.js"]).concat(['src/**/*.html']), ['indexDev']);
 });
 
-gulp.task('serveDev', function() {
+gulp.task('serveDev',['watchDev'], function() {
     gulp.src(base.dest)
         .pipe(webserver({
             port: 80,
