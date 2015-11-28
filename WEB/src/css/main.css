@@ -17,4 +17,39 @@ height:400px;
 margin-bottom: 10px;
 }
 .avatar {
-width: 30px;}
+width: 35px;}
+.message-content {
+word-wrap: break-word;
+}
+
+.view-fade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 100%;
+    opacity: 1;
+}
+.view-fade.ng-enter,
+.view-fade.ng-leave {
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+}
+.view-fade.ng-enter {
+    opacity: 0;
+}
+.view-fade.ng-enter-active {
+    opacity: 1;
+}
+.view-fade.ng-leave {
+    opacity: 1;
+}
+.view-fade.ng-leave-active {
+    opacity: 0;
+}
+.message-alert.ng-enter {
+    opacity: 0;
+    transition: all .5s ease;
+}
+.message-alert.ng-enter-active {
+    opacity: 1;
+}
