@@ -53,3 +53,6 @@ word-wrap: break-word;
 .message-alert.ng-enter-active {
     opacity: 1;
 }
+.checkbox.first {
+margin-top:0px;
+}
