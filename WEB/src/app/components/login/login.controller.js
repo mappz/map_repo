@@ -16,7 +16,8 @@ loginModule.controller("loginController", ["$scope", "$http", "toastr", '$cookie
                 $cookies.putObject('user', {
                     email: $scope.user.login,
                     nick: $scope.user.login.split("@")[0],
-                    img: authData.password.profileImageURL
+                    img: authData.password.profileImageURL,
+                    uid: authData.uid
                 });
                 console.log("cookie created")
                 toastr.success("Logged in");

@@ -1,5 +1,5 @@
 var messagesModule = angular.module("messagesModule");
-messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth', '$cookies', 'toastr', '$timeout', 'leafletData', 'fire', 'leafletMarkersHelpers', function($scope, $http, currentAuth, $cookies, toastr, $timeout, leafletData, Fire, leafletMarkersHelpers) {
+messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth', '$cookies', 'toastr', '$timeout', 'leafletData', 'fire', 'leafletMarkersHelpers', '$firebaseArray', function($scope, $http, currentAuth, $cookies, toastr, $timeout, leafletData, Fire, leafletMarkersHelpers, $firebaseArray) {
     angular.extend($scope, {
         map: {
             lat: 52.253195,
@@ -23,6 +23,7 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
             }
         }
     });
+
     $scope.$on('$destroy', function() {
         console.log("Reset marker groups")
         leafletMarkersHelpers.resetMarkerGroups();
@@ -30,12 +31,32 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
 
         })
     });
+
     console.log("Messages controller ***********************************************")
     $scope.markers = new Array();
-    $scope.conversations = [];
-    $scope.hashMap = new HashMap();
+    $scope.conversations = $firebaseArray(Fire.conversations);
 
-    var updateConversations = function() {
+    $scope.conversations.$loaded()
+      .then(function(x) {
+        $scope.sendMessage("HEJ");
+      })
+      .catch(function(error) {
+        console.log("Error:", error);
+      });
+
+    //$scope.hashMap = new HashMap();
+
+    /*var conversationsObj = $firebaseObject(Fire.conversations);
+    conversationsObj.$bindTo($scope, "conversations").then(function() {
+        console.log($scope.conversations.$value);
+
+        if ($scope.conversations.$value == null)
+            $scope.conversations.$value = [];
+
+        $scope.sendMessage("HHEHEHEH");
+    });*/
+
+    /*var updateConversations = function() {
         $scope.conversations = [];
         $scope.hashMap.forEach(function(value, key) {
             $scope.conversations.push(value);
@@ -54,7 +75,55 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
         if (value.content !== '<EMPTY>') {
             $scope.hashMap.get(value.talkId).messages.push(value);
         }
+    }*/
+
+    var createConversation = function(author, category, lat, long) {
+        return {author: author, date: new Date().toLocaleString(), latitude: lat, longtitude: long, category: category, messages: []}
     }
+
+    var createMessage = function(author, content) {
+        return {content: content, author: author, date: new Date().toLocaleString()}
+    }
+
+    var addMessageToConversation = function(conversation, message) {
+        if (conversation.messages == null)
+            conversation.messages = [];
+
+        conversation.messages.push(message);
+    }
+
+    var createAuthorModel = function(uid, name, avatarUrl) {
+        return {uid: uid, name: name, avatarUrl: avatarUrl};
+    }
+
+    $scope.sendMessage = function(content) {
+        var user = $cookies.getObject('user');
+        if (user != null) {
+            var author = createAuthorModel(user.uid, user.nick, user.img);
+
+            var conversation = createConversation(author, "kategoria1", "50.0", "49.0");
+
+            var message = createMessage(author, content);
+
+            $scope.conversations.$add(conversation)
+                .then(function(ref) {
+                     var id = ref.key();
+
+                     var idx = $scope.conversations.$indexFor(id);
+
+                     console.log($scope.conversations[idx]);
+
+                     addMessageToConversation($scope.conversations[idx], message);
+
+                     $scope.conversations.$save($scope.conversations[idx]);
+               });
+
+        }
+    }
+
+
+
+
 
 //    //Odbieranie wszystkich
 //    var getAll = function() {
@@ -86,16 +155,9 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
 //
 //  //  getAll();
 
-    //Wysyłanie
-    $scope.sendMessage = function() {
-
-    }
-
-    //$scope.sendMessage();
-
 
     //Odbieranie
-    var startListening = function() {
+    /*var startListening = function() {
         var webMessages = Fire.messages;
         webMessages.on("child_added", function(snapshot, prevChildKey) {
 
@@ -146,6 +208,7 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
         }
         return _p8() + _p8(true) + _p8(true) + _p8();
     }
+
     $scope.$on("leafletDirectiveMap.click", function(event, args) {
         var leafEvent = args.leafletEvent;
 
@@ -167,6 +230,6 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
         } else {
             toastr.error("Nie można wysłać wiadomości")
         }
-    });
+    });*/
 
 }]);

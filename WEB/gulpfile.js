@@ -174,7 +174,8 @@ gulp.task('watchDev', ['indexDev'], function() {
 gulp.task('serveDev',['watchDev'], function() {
     gulp.src(base.dest)
         .pipe(webserver({
-            port: 80,
+            port: 8080,
+            open: true,
             livereload: true
         }));
 });
