@@ -25,12 +25,12 @@
                     <label>Sex</label>
                         <div class="checkbox first">
                             <label>
-                                <input name="sex" type="radio" id="male" value="male"> male
+                                <input name="sex" type="radio" id="male" value="male" ng-model="sex"> male
                             </label>
                         </div>
                         <div class="checkbox">
                             <label>
-                                <input name="sex" type="radio" name="radio" id="inlineCheckbox2" value="female"> female
+                                <input name="sex" type="radio" name="radio" id="inlineCheckbox2" value="female" ng-model="sex"> female
                             </label>
                         </div>
                 </div>
@@ -46,7 +46,7 @@
                     </div>
                     <div class="checkbox" ng-repeat="category in categoriesList track by $index">
                         <label>
-                            <input type="checkbox" ng-model="categories[category.val]" value="category.val" ng-disabled="category.disabled"> {{category.name}}
+                            <input type="checkbox" ng-model="category.selected" ng-disabled="category.disabled"> {{category.name}}
                         </label>
                     </div>
                 </div>

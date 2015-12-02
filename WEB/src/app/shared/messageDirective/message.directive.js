@@ -4,7 +4,8 @@ messageDirectives.directive("conversationPopup", ['$cookies', 'toastr', 'fire', 
         restrict: 'E',
         scope: {
             conversations: '=',
-            key: '@'
+            key: '@',
+            markers: '@'
         },
         templateUrl: 'app/shared/messageDirective/conversation-popup.template.html',
         controller: ['$scope', '$element', '$attrs', '$transclude', '$timeout', function($scope, $element, $attrs, $transclude, $timeout) {
