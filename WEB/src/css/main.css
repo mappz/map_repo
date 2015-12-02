@@ -10,6 +10,7 @@ color: #ffff;
 
 div.message-alert {
 margin-bottom: 5px;
+padding-bottom: 5px;
 }
 .messages-wrapper{
 overflow-y:scroll;
@@ -55,4 +56,29 @@ word-wrap: break-word;
 }
 .checkbox.first {
 margin-top:0px;
+}
+.message-alert .small {
+font-size: 10px;
+color: #B1B1B1;
+}
+.conversation-header {
+margin-bottom:4px;
+margin-top:-10px;
+color: #333;
+}
+.conversation-title {
+    line-height: 20px;
+    font-weight: 600;
+}
+input.edit-message-input.editable-input.form-control {
+width: 130px;
+}
+span.editable-click {
+    color: blue;
+    border-bottom: none;
+}
+span.editable-click:hover {
+}
+.conversation-header .popover-content {
+width: 290px;
 }
