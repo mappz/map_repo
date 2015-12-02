@@ -34,7 +34,8 @@ registrationModule.controller('registrationController', ['$scope', '$http', 'toa
             password: $scope.password
         }).then(function(userData) {
             console.log(userData);
-            Fire.ref.authWithPassword({
+            var ref = Fire.ref;
+            ref.authWithPassword({
                 email: $scope.email,
                 password: $scope.password
             }, function(error, authData) {
@@ -57,7 +58,7 @@ registrationModule.controller('registrationController', ['$scope', '$http', 'toa
                         role: 'USER'
                     })
                         toastr.success("Zostałeś zarejestrowany pomyślnie!");
-                        Fire.ref.unauth();
+                        ref.unauth();
 
                 }
             })
