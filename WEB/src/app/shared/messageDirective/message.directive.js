@@ -16,6 +16,9 @@ messageDirectives.directive("conversationPopup", ['$cookies', 'toastr', 'fire', 
             $scope.isAuthor = false;
             console.log("auth obj")
             $scope.authUid = Auth.$getAuth().uid;
+            $scope.isAdmin = $cookies.getObject('user').ex.role == "ADMIN";
+
+            console.log($cookies.getObject('user').ex.role);
             if ($scope.authUid === $scope.conversation.author.uid) {
                 $scope.isAuthor = true;
             }
@@ -41,6 +44,15 @@ messageDirectives.directive("conversationPopup", ['$cookies', 'toastr', 'fire', 
                 $scope.conversation.messages[val]['edited'] = true;
                 $scope.conversation.messages[val].date = new Date().toLocaleString();
                 $scope.conversations.$save($scope.conversations[id]);
+            }
+
+            $scope.removeMessage = function(index) {
+                console.log("Removing message " +  $scope.conversations[id].messages[index]);
+
+                $scope.conversations[id].messages.splice(index, 1);
+                $scope.conversations.$save($scope.conversations[id]).then(function() {
+                    toastr.success("Message removed");
+                });
             }
         }],
     };

@@ -3,7 +3,7 @@
        Talk about {{conversation.category}}
     </div>
     <div class="col-md-4 col-lg-4 col-sm-4 col-xs-8 text-right">
-        <button ng-show="isAuthor" ng-click="removeConversation()" type="button" class="btn btn-danger btn-xs">
+        <button ng-show="isAuthor || isAdmin" ng-click="removeConversation()" type="button" class="btn btn-danger btn-xs">
             <span class="glyphicon glyphicon-trash"></span>
         </button>
         <button popover-animation="true" uib-popover="Author: {{conversation.author.name}}" type="button" class="btn btn-default btn-xs">
@@ -22,10 +22,15 @@
                     {{message.author.name}}
                 </div>
             </div>
-            <div class="col-md-8 col-sm-8 col-xs-8 message-content">
+            <div class="col-md-6 col-sm-6 col-xs-6 message-content">
 
-                <span ng-show="message.author.uid == authUid" editable-text="message.content" e-class="edit-message-input" onaftersave="saveEditedMessage($data,$index)">{{message.content}}</span>
-                <span ng-show="message.author.uid != authUid">{{message.content}}</span>
+                <span ng-show="message.author.uid == authUid || isAdmin" editable-text="message.content" e-class="edit-message-input" onaftersave="saveEditedMessage($data,$index)">{{message.content}}</span>
+                <span ng-show="message.author.uid != authUid && !isAdmin">{{message.content}}</span>
+            </div>
+            <div ng-show="message.author.uid == authUid || isAdmin" class="col-md-1 col-sm-1 col-xs-1 remove-button">
+                <button popover-animation="true" type="button" class="btn btn-default btn-xs pull-right" ng-click="removeMessage($index)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
             </div>
         </div>
         <div class="row">

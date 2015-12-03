@@ -97,9 +97,6 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
                     var id = ref.key();
                     var idx = $scope.conversations.$indexFor(id);
                     console.log($scope.conversations[idx]);
-                    var message = conversationFactory.createMessage(author, "Nowa konwersacja");
-                    conversationFactory.addMessageToConversation($scope.conversations[idx], message);
-                    $scope.conversations.$save($scope.conversations[idx]);
                 });
         }
     })
