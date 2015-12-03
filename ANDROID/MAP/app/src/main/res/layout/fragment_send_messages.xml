@@ -4,6 +4,11 @@
               tools:context="pl.infoapps.navinch.activities.MallMapActivity"
               android:orientation="vertical">
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/message_list"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

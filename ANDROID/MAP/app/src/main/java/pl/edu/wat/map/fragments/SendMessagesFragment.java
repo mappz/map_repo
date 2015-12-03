@@ -26,7 +26,10 @@ public class SendMessagesFragment extends Fragment implements View.OnClickListen
 
     private EditText messageEditText;
     private Button sendButton;
-    public static SendMessagesFragment newInstance(String param1, String param2) {
+    private String conversationId;
+    private final String param1 = "conversation";
+
+    public static SendMessagesFragment newInstance() {
         SendMessagesFragment fragment = new SendMessagesFragment();
         return fragment;
     }
@@ -38,6 +41,7 @@ public class SendMessagesFragment extends Fragment implements View.OnClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        conversationId = savedInstanceState.getString(param1);
     }
 
     @Override

@@ -1,20 +1,14 @@
 package pl.edu.wat.map.adapters;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
-
 import com.google.android.gms.maps.GoogleMap;
-
 import com.google.android.gms.maps.model.Marker;
-
-
 import java.util.List;
-
-
 import pl.edu.wat.map.R;
 import pl.edu.wat.map.model.Message;
+
 
 /**
  * Created by Hubert Faszcza on 2015-10-18.
