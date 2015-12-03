@@ -52,6 +52,8 @@ public class SendMessagesFragment extends Fragment implements View.OnClickListen
         sendButton = (Button) v.findViewById(R.id.button_send);
         sendButton.setOnClickListener(this);
 
+
+
         return v ;
     }
 

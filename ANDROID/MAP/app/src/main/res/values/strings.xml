@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">MAP</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
     <string-array name="menu_items">
@@ -9,34 +8,34 @@
         <item>Mapa</item>
         <item>Grupy</item>
     </string-array>
-    <string name="title_activity_map">Map</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_map">MAP</string>
+    <string name="title_activity_login">Zaloguj</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
+    <string name="prompt_password">Haslo (Opcjonalnie)</string>
+    <string name="action_sign_in">Zaloguj lub rejestruj</string>
+    <string name="action_sign_in_short">Zaloguj</string>
+    <string name="error_invalid_email">Adres e-mail jest nieporawny</string>
+    <string name="error_invalid_password">Haslo jest za krotkie</string>
+    <string name="error_incorrect_password">Haslo jest niepoprawne</string>
+    <string name="error_field_required">To pole jest wymagane</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="action_logout">Logout</string>
+    <string name="action_logout">Wyloguj</string>
 
-        <string name="login_with_facebook">Login with Facebook</string>
-        <string name="login_with_google">Login with Google+</string>
-        <string name="login_with_twitter">Login with Twitter</string>
-        <string name="login_with_password">Login with Password</string>
-        <string name="login_anonymously">Login Anonymously</string>
+        <string name="login_with_facebook">Zaloguj przez Facebook</string>
+        <string name="login_with_google">Zaloguj przez google Google+</string>
+        <string name="login_with_twitter">Zaloguj przez Twitter</string>
+        <string name="login_with_password">Zaloguj z haslem</string>
+        <string name="login_anonymously">Zaloguj anonimowo</string>
 
 
     <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="register">Register</string>
-    <string name="repeat_password">Repeat password</string>
+    <string name="password">Haslo</string>
+    <string name="register">Rejestruj</string>
+    <string name="repeat_password">Powtorz haslo</string>
     <string name="password_missmatch">Hasla sie nie zgadzaja</string>
     <string name="registration_sucessfull">Zarejestrowano konto</string>
     <string name="registration_error">Wystapil blad</string>
