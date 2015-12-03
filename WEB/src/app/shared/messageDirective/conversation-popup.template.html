@@ -27,10 +27,10 @@
                 <span ng-show="message.author.uid == authUid || isAdmin" editable-text="message.content" e-class="edit-message-input" onaftersave="saveEditedMessage($data,$index)">{{message.content}}</span>
                 <span ng-show="message.author.uid != authUid && !isAdmin">{{message.content}}</span>
             </div>
-            <div ng-show="message.author.uid == authUid || isAdmin" class="col-md-1 col-sm-1 col-xs-1 remove-button">
-                <button popover-animation="true" type="button" class="btn btn-default btn-xs pull-right" ng-click="removeMessage($index)">
-                    <span class="glyphicon glyphicon-remove"></span>
-                </button>
+            <div ng-show="message.author.uid == authUid || isAdmin" style="margin-top: -13px;margin-left: 9px;font-size: 10px;" class="col-md-1 col-sm-1 col-xs-1 remove-button">
+                <span ng-click="removeMessage($index)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </span>
             </div>
         </div>
         <div class="row">
