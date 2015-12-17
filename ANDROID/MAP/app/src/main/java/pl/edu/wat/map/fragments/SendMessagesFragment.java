@@ -15,12 +15,10 @@ import android.widget.Toast;
 import pl.edu.wat.map.R;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SendMessagesFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SendMessagesFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Fragment used as container for send messages view
+ * @author Marcel Paduch
+ * @version 1
+ * @since 17/12/2015
  */
 public class SendMessagesFragment extends Fragment implements View.OnClickListener {
 

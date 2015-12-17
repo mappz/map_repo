@@ -24,6 +24,13 @@ import pl.edu.wat.map.fragments.ReadMessagesFragment;
 import pl.edu.wat.map.fragments.SendMessagesFragment;
 import pl.edu.wat.map.utils.OnMenuItemClickListener;
 
+/**
+ *  Main activity is used as a container for fragments
+ * It is first activity displayed if user is logged in
+ * @author Marcel Paduch
+ * @version 1
+ * @since 17/12/2015
+ */
 public class MainActivity extends AppCompatActivity implements OnMenuItemClickListener {
 
     private Toolbar toolbar;
@@ -39,7 +46,10 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
             "Grupy"};
 
     private final String TAG = "FRAGMENT REPLACE";
-
+    /**
+     * Android OS method that is called when activity is created
+     * @param savedInstanceState previous state of activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,6 +101,11 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         mDrawerToggle.syncState();
     }
 
+	/**
+     * This method is called when menu item is clicked
+     * @param item item id
+     * @param v View class
+     */
     @Override
     public void onMenuItemClickListener(int item, View v) {
         switch(item)
@@ -114,7 +129,11 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         Drawer.closeDrawers();
     }
 
-
+	/**
+     * This method inflates given fragment
+     * @param fragment Fragment to inflate
+     * @param args Arguments for fragment
+     */
     public void startFramgnet(Fragment fragment, Bundle args)
     {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -122,7 +141,11 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         transaction.addToBackStack(TAG);
         transaction.commit();
     }
-
+    /**
+     * Android OS method called when menu is created
+     * @param menu Object containing menu
+     * @return menu creation status
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -139,7 +162,11 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         setMEnuVisibility();
         return true;
     }
-
+    /**
+     * Android OS method that is called when menu item is clicked
+     * @param item Menu item
+     * @return status of operation
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will

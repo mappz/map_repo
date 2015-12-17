@@ -16,7 +16,10 @@ import java.util.Map;
 import pl.edu.wat.map.R;
 
 /**
- * Created by marcel on 2015-10-18.
+ * Login activity used to login and register in application
+ * @author Hubert Faszcza
+ * @version 1
+ * @since 17/12/2015
  */
 public class RegisterActivity extends Activity implements View.OnClickListener {
 	private Button mRegisterButton;
@@ -26,6 +29,10 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
 	private TextView mMessageText;
 	private Firebase ref;
 
+	/**
+	 * Android OS method that is called when activity is created
+	 * @param savedInstanceState previous state of activity
+	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

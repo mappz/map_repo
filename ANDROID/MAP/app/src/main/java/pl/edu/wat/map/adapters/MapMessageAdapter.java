@@ -11,7 +11,10 @@ import pl.edu.wat.map.model.Conversation;
 
 
 /**
- * Created by Hubert Faszcza on 2015-10-18.
+ * This adapter maps messages to points on map
+ * @author Marcel Paduch
+ * @version 1
+ * @since 17/12/2015
  */
 public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
 
@@ -25,6 +28,10 @@ public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
         this.context = context;
     }
 
+	/**
+     * Sets conversation list
+     * @param conversations conversations list
+     */
     public void setConversations(List<Conversation> conversations)
     {
         this.conversations = conversations;
@@ -34,6 +41,7 @@ public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
     public View getInfoWindow(Marker marker) {
         return null;
     }
+
 
     @Override
     public View getInfoContents(Marker marker) {

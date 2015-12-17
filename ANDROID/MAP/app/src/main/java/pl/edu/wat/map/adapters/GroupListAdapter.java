@@ -15,7 +15,10 @@ import pl.edu.wat.map.utils.OnGroupClickListener;
 import pl.edu.wat.map.utils.OnSubscribeClickListener;
 
 /**
- * Created by Lareth on 2015-11-26.
+ * Adapter for groups
+ * @author Hubert Faszcza
+ * @version 1
+ * @since 17/12/2015
  */
 public class GroupListAdapter extends ArrayAdapter<String>
 {
@@ -46,6 +49,13 @@ public class GroupListAdapter extends ArrayAdapter<String>
         this.subscribeClickListener = listener;
     }
 
+	/**
+     * Gets view
+     * @param position position of view
+     * @param convertView holder class
+     * @param parent parent view
+     * @return view
+     */
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;

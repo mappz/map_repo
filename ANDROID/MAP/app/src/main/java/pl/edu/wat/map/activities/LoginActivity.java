@@ -25,6 +25,13 @@ import java.util.Map;
 
 import pl.edu.wat.map.R;
 
+/**
+ * Login activity used to login and in application
+ * It is first activity displayed if user is not logged in
+ * @author Marcel Paduch
+ * @version 1
+ * @since 17/12/2015
+ */
 public class LoginActivity extends ActionBarActivity  {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
@@ -64,6 +71,10 @@ public class LoginActivity extends ActionBarActivity  {
      ***************************************/
     private Button mAnonymousLoginButton;
 
+	/**
+     * Android OS method that is called when activity is created
+     * @param savedInstanceState previous
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,6 +147,9 @@ public class LoginActivity extends ActionBarActivity  {
         mFirebaseRef.addAuthStateListener(mAuthStateListener);
     }
 
+	/**
+     * Android OS method that is called when activity is destroyed
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -150,7 +164,11 @@ public class LoginActivity extends ActionBarActivity  {
      * the value passed into startActivityForResult.
      */
 
-
+	/**
+     * Android OS method called when menu is created
+     * @param menu Object containing menu
+     * @return menu creation status
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         /* If a user is currently authenticated, display a logout menu */
@@ -162,6 +180,11 @@ public class LoginActivity extends ActionBarActivity  {
         }
     }
 
+	/**
+     * Android OS method that is called when menu item is clicked
+     * @param item Menu item
+     * @return status of operation
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
@@ -290,7 +313,9 @@ public class LoginActivity extends ActionBarActivity  {
         }
     }
 
-
+	/**
+     * Method used to remember that user is logged in
+     */
     public void setLoggedIn(){
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -310,6 +335,10 @@ public class LoginActivity extends ActionBarActivity  {
     /* ************************************
      *              PASSWORD              *
      **************************************
+     */
+
+	/**
+     * Method used to login with password
      */
     public void loginWithPassword() {
         mAuthProgressDialog.show();

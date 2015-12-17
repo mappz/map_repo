@@ -36,12 +36,10 @@ import pl.edu.wat.map.adapters.MapMessageAdapter;
 import pl.edu.wat.map.model.Conversation;
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ReadMessagesFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ReadMessagesFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Fragment used as container for read messages view
+ * @author Marcel Paduch
+ * @version 1
+ * @since 17/12/2015
  */
 public class ReadMessagesFragment extends Fragment {
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.

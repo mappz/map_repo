@@ -2,8 +2,12 @@ package pl.edu.wat.map.model;
 
 import java.util.ArrayList;
 
+
 /**
- * Created by Lareth on 2015-10-18.
+ * Model class for conversation
+ * @author Hubert Faszcza
+ * @version 1
+ * @since 17/12/2015
  */
 public class Conversation {
 

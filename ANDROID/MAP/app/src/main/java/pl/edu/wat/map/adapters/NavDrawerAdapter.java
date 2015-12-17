@@ -12,7 +12,12 @@ import android.widget.TextView;
 import pl.edu.wat.map.R;
 import pl.edu.wat.map.utils.OnMenuItemClickListener;
 
-
+/**
+ * Creates navigation drawer menu
+ * @author Hubert Faszcza
+ * @version 1
+ * @since 17/12/2015
+ */
 public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.ViewHolder> {
 
     private static final int TYPE_HEADER = 0;  // Declaring Variable to Understand which View is being worked on

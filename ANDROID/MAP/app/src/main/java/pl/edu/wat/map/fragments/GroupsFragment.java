@@ -18,14 +18,16 @@ import pl.edu.wat.map.adapters.GroupListAdapter;
 import pl.edu.wat.map.utils.OnGroupClickListener;
 import pl.edu.wat.map.utils.OnSubscribeClickListener;
 
-
+/**
+ * Fragment used as container for groups view
+ * @author Marcel Paduch
+ * @version 1
+ * @since 17/12/2015
+ */
 public class GroupsFragment extends Fragment {
 
 
-    public static GroupsFragment newInstance(String param1, String param2) {
-        GroupsFragment fragment = new GroupsFragment();
-        return fragment;
-    }
+
 
     public GroupsFragment() {
         // Required empty public constructor
