@@ -1,13 +1,15 @@
 package pl.edu.wat.map.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Lareth on 2015-10-18.
  */
-public class Conversation {
+public class Conversation implements Serializable {
 
+    private String id;
     private Author author;
     private String content;
     private String date;
@@ -29,6 +31,14 @@ public class Conversation {
         this.latitude = latitude;
         this.longtitude = longtitude;
         this.messages = messages;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public Author getAuthor() {

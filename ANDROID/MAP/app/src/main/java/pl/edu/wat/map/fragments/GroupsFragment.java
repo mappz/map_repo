@@ -39,7 +39,8 @@ public class GroupsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState)
+    {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_groups, container, false);
         ArrayList<String> groups = new ArrayList<String>();
@@ -54,9 +55,11 @@ public class GroupsFragment extends Fragment {
         ListView groupList = (ListView) view.findViewById(R.id.group_list);
         GroupListAdapter adapter =
                 new GroupListAdapter(getActivity(), R.layout.cell_groups_item, groups);
-        adapter.setOnClickListener(new OnGroupClickListener() {
+        adapter.setOnClickListener(new OnGroupClickListener()
+        {
             @Override
-            public void onGroupClickListener(String item) {
+            public void onGroupClickListener(String item)
+            {
                 Toast.makeText(getActivity(), "Wygrano grupe " + item, Toast.LENGTH_LONG).show();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 ReadMessagesFragment readMessagesFragment = new ReadMessagesFragment();
@@ -65,9 +68,11 @@ public class GroupsFragment extends Fragment {
                 transaction.commit();
             }
         });
-        adapter.setOnSubscribeClickListener(new OnSubscribeClickListener() {
+        adapter.setOnSubscribeClickListener(new OnSubscribeClickListener()
+        {
             @Override
-            public void onSubscribeClick(String item) {
+            public void onSubscribeClick(String item)
+            {
                 Toast.makeText(getActivity(), "Dodano grupe " + item + " do subskrybowanych",
                         Toast.LENGTH_LONG).show();
             }
@@ -77,20 +82,24 @@ public class GroupsFragment extends Fragment {
         return view;
     }
 
-    public void onButtonPressed(Uri uri) {
+    public void onButtonPressed(Uri uri)
+    {
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Activity activity)
+    {
         super.onAttach(activity);
     }
 
     @Override
-    public void onDetach() {
+    public void onDetach()
+    {
         super.onDetach();
     }
 
-    public interface OnFragmentInteractionListener {
+    public interface OnFragmentInteractionListener
+    {
         public void onFragmentInteraction(Uri uri);
     }
 

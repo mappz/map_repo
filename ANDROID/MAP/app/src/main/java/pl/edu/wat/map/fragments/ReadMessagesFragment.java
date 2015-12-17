@@ -7,6 +7,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,18 +46,18 @@ import pl.edu.wat.map.model.Conversation;
  * Use the {@link ReadMessagesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ReadMessagesFragment extends Fragment {
+public class ReadMessagesFragment extends Fragment implements GoogleMap.OnInfoWindowClickListener {
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
     private Button buttonConfirmRadius;
     private EditText editText;
     private MapView mapView;
-    private List<Conversation> conversations;
     private Firebase ref;
     private MapMessageAdapter adapter;
     private Location mLocation;
     private LocationManager mLocationManager;
     private boolean firtsPosition = true;
     private Marker positionMarker;
+    private ArrayList<Conversation> conversations;
 
     private OnFragmentInteractionListener mListener;
 
@@ -122,6 +123,8 @@ public class ReadMessagesFragment extends Fragment {
                             Double latitude = (Double) postSnapshot.child("latitude").getValue();
                             Double longitude = (Double) postSnapshot.child("longitude").getValue();
                             ArrayList<Messages> messages = (ArrayList) postSnapshot.child("messages").getValue();
+                            String id = postSnapshot.getKey();
+                            conversation.setId(id);
                             conversation.setAuthor(author);
                             conversation.setCategory(category);
                             conversation.setDate(date);
@@ -176,6 +179,34 @@ public class ReadMessagesFragment extends Fragment {
 
         mMap = mapView.getMap();
         mMap.setInfoWindowAdapter(adapter);
+        mMap.setOnInfoWindowClickListener(this);
+    }
+
+    @Override
+    public void onInfoWindowClick(Marker marker)
+    {
+        Conversation conversationToShow = null;
+        if(conversations != null)
+        {
+            for (Conversation conversation : conversations)
+            {
+                if (marker.getPosition().longitude == conversation.getLongtitude() &&
+                        marker.getPosition().latitude == conversation.getLatitude())
+                {
+                    conversationToShow = conversation;
+                    break;
+                }
+            }
+        }
+
+        Bundle args = new Bundle();
+        args.putSerializable("conversation", conversationToShow);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        SendMessagesFragment sendMessagesFragment = new SendMessagesFragment();
+        sendMessagesFragment.setArguments(args);
+        transaction.replace(R.id.fragment_container, sendMessagesFragment, ReadMessagesFragment.class.getName());
+        transaction.addToBackStack("FRAGMENT REPLACE");
+        transaction.commit();
     }
 
     /**
@@ -193,8 +224,10 @@ public class ReadMessagesFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    public final LocationListener locationListener = new LocationListener() {
-        public void onLocationChanged(Location location) {
+    public final LocationListener locationListener = new LocationListener()
+    {
+        public void onLocationChanged(Location location)
+        {
             mLocation = location;
             if (positionMarker != null) positionMarker.remove();
             positionMarker = mMap.addMarker(new MarkerOptions()
@@ -202,7 +235,8 @@ public class ReadMessagesFragment extends Fragment {
                             mLocation.getLongitude()))
                     .title(getResources().getString(R.string.your_position))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.location)));
-            if (firtsPosition) {
+            if (firtsPosition)
+            {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                         new LatLng(mLocation.getLatitude(), mLocation.getLongitude()), 17));
                 firtsPosition = false;
