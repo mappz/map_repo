@@ -41,7 +41,7 @@ public class SendMessagesFragment extends Fragment implements View.OnClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        conversationId = savedInstanceState.getString(param1);
+//        conversationId = savedInstanceState.getString(param1);
     }
 
     @Override

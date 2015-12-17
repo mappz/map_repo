@@ -1,0 +1,529 @@
+commit ccb841a64f173af5d109754f19ad97bb75c9ae95
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Dec 3 16:22:01 2015 +0100
+
+    [#10178] zmiana nazw pol na polskojezyczne
+
+commit 562cb42e950d1289065d0a20c525e1c7da23a562
+Author: Marcin Surowiec <marcin.surowiec@anatree.com>
+Date:   Thu Dec 3 09:52:15 2015 +0100
+
+    poprawienie polozenia przyisku usuwania wiadomosci
+
+commit b1b47f793562c7880eca507556eb09d97a9ac4ed
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Dec 3 01:56:01 2015 +0100
+
+    [#10176] Dodanie layoutu czatu
+
+commit a9b6cf8be4061fed0de3dc26182d803da0efb5a4
+Author: Bartłomiej Styś <bartlomiej.stys@gmail.com>
+Date:   Thu Dec 3 01:39:00 2015 +0100
+
+    [#10174] edycja/usuwanie wiadomości przez admina i usera - WEB
+
+commit 2bf2d0c39d21dacab8aa2ada05603eb37ef82f8b
+Author: Marcin Surowiec <marcin.surowiec@anatree.com>
+Date:   Wed Dec 2 22:46:27 2015 +0100
+
+    [#10170] poprawa błędnego logowanie po rejestracji
+
+commit 45a4f07b254ca3827ffe04fe1b71103693485304
+Author: Marcin Surowiec <marcin.surowiec@anatree.com>
+Date:   Wed Dec 2 22:18:20 2015 +0100
+
+    [#10170] Dodanie obsługi nowego formularza rejestracji w kontorlerze
+    - naprawiony błąd wysyłania wiadomosci
+
+commit f0c2a9a7c9b6bea64cab5e6d242f913641f674a6
+Author: Marcin Surowiec <marcin.surowiec@anatree.com>
+Date:   Wed Dec 2 21:04:24 2015 +0100
+
+    [#10172] - Wdrożenie nowego modelu wiadomości
+    - Usuwanie konwersacji
+    -Edycja wiadmości
+    - poprawa innych drobnijeszych żeczy
+
+commit d64f10c2ffb7aed31320fb00a903a42f40c093a7
+Merge: 1f93988 4fd510d
+Author: Bartłomiej Styś <bartlomiej.stys@gmail.com>
+Date:   Wed Dec 2 00:51:51 2015 +0100
+
+    Merge branch 'master' of https://github.com/mappz/map_repo
+
+commit 1f939883ef8d858d075a3f4d79ffca59d51a448d
+Author: Bartłomiej Styś <bartlomiej.stys@gmail.com>
+Date:   Wed Dec 2 00:51:29 2015 +0100
+
+    [#10168] Troche backendu dla wiadomosci - WEB
+
+commit 4fd510dfa2be0a87ff7991e52e10f1dcb56f82e4
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Wed Dec 2 00:50:36 2015 +0100
+
+    [#10170] Rozbudowanie formularza rejestracji aby był zgodny z nowym modelem firebase
+
+commit f50ff2e6999ef7967d094930d2f008b6c014bc77
+Author: Marcin Surowiec <marcin.surowiec@anatree.com>
+Date:   Sat Nov 28 21:44:06 2015 +0100
+
+    [#10167] Naprawa bledu powodujacego dublowanie sie wiadomosci
+
+commit 74285dd05a17abfeba9f812d15b05990e62bce8d
+Author: Marcin Surowiec <marcin.surowiec@anatree.com>
+Date:   Sat Nov 28 19:50:19 2015 +0100
+
+    Drobne poprawki
+
+commit 94c419590c282ff5fad29719dc91e7ec94f12a69
+Author: Marcin Surowiec <marcin.surowiec@anatree.com>
+Date:   Sat Nov 28 19:49:41 2015 +0100
+
+    [#10166] Animacje
+
+commit b66c15c38f86108ca6823d6b81bcbdba4880e57a
+Author: Marcin Surowiec <marcin.surowiec@anatree.com>
+Date:   Sat Nov 28 19:45:54 2015 +0100
+
+    [#10160] Poprawa responsywnoci okienka konwersacji
+
+commit b0058fb836e1511aa925a3fb631a02f0e3c56923
+Author: Marcin Surowiec <marcin.surowiec@anatree.com>
+Date:   Sat Nov 28 19:42:02 2015 +0100
+
+    [#10159] Navbar zmienia sie zaleznie od tego czy urzytkownik jest zalogowany czy tez nie
+
+commit 7200abc1305317a75fb6df5eeb0d4c7b551ae74e
+Author: Marcin Surowiec <marcin.surowiec@anatree.com>
+Date:   Sat Nov 28 00:23:39 2015 +0100
+
+    [#10158] Dodanie brakujacej zależności gulp-a, poprawa konfiguracji taska serve
+
+commit f8c2d1280b2cd1de22aff1edb67268d000d1eecb
+Author: Marcin Surowiec <marcin.surowiec@anatree.com>
+Date:   Sat Nov 28 00:03:11 2015 +0100
+
+    [#10158] Konfiguracja gulp-webserver oraz poprawienie referencji do firebase w kontrolerze logowania
+
+commit d87fd39ce0ee4a07d4838e811f8afadc9d562538
+Author: Marcin Surowiec <marcin.surowiec@anatree.com>
+Date:   Fri Nov 27 00:37:43 2015 +0100
+
+    Stworzenie serwisu zarrzadzajacego odwolaniami do firebase
+
+commit 64baaf6e4b10d97200cb10a324306d4c9992c89d
+Merge: 88620e3 bd6d2ef
+Author: msurowiec <marcins2009@gmail.com>
+Date:   Fri Nov 27 00:10:23 2015 +0100
+
+    Merge branch 'master' of github.com:mappz/map_repo
+
+commit 88620e3fdbf0f2c40bf662bad493ccbd8c0af758
+Author: msurowiec <marcins2009@gmail.com>
+Date:   Fri Nov 27 00:06:47 2015 +0100
+
+    Poprawa responsywnosci
+
+commit bd6d2efdb574e372a0099d2c91f42fda2841d654
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Nov 26 16:34:25 2015 +0100
+
+    dodanie klasy ze zla nazwa
+
+commit 2f1a19cd3a10f0b6e8bc92eb2f24d465ce4f7f96
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Nov 26 16:33:59 2015 +0100
+
+    usuniecie klasy ze zla nazwa
+
+commit 1bd14844de34f8e35a96eb3e3c52d79ee81745f5
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Nov 26 16:09:51 2015 +0100
+
+    poprawki w nazwach klas
+
+commit e121a51e4c70cc16330505ffbc74c8267c40f29f
+Merge: 7149561 bb4ac93
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Thu Nov 26 15:21:49 2015 +0100
+
+    Merge branch 'master' of https://github.com/mappz/map_repo
+
+commit 71495617b60efa6006c5338c57a13b8b285c2ec4
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Thu Nov 26 15:21:24 2015 +0100
+
+    [#10134]  Dodanie widoku wysyłania wiadomosci
+
+commit bb4ac939553226d9636dbf6fbdce7515977b3618
+Merge: b295f18 9897294
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Nov 26 15:19:37 2015 +0100
+
+    merge
+
+commit b295f183cc4022aec4a6ac0ea855db0bd221f175
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Nov 26 15:18:43 2015 +0100
+
+    [#10133] Dodanie fragmentu z grupami i adaptera do obsługi listy grup. Interfejsy z listenerami
+
+commit 989729480a02877151171148e5a4b0541aa34561
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Thu Nov 26 15:07:18 2015 +0100
+
+    wylogowanie itd
+
+commit 521230d597f6ee52a32b02e984dae45518689009
+Merge: b0c046a 21469b3
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Nov 26 14:51:01 2015 +0100
+
+    Merge branch 'master' of https://github.com/mappz/map_repo
+
+commit b0c046a71e7a54cc54b44daf8d9597fbd02853b2
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Nov 26 14:49:30 2015 +0100
+
+    Dodani fragmenu z grupami
+
+commit 21469b360653562e9005ba38ce230e9faf36f6f8
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Thu Nov 26 05:13:05 2015 +0100
+
+    no message
+
+commit 8c8b9c6e4578b643d8814595b24ab8f6cf157253
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Thu Nov 26 05:08:25 2015 +0100
+
+    bugfixy
+
+commit 30fce4f01d1c2457b880c87bbec185c5c0632956
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Thu Nov 26 04:28:12 2015 +0100
+
+    poprawka
+
+commit 0e0213c16e8e4f275fbbc027a3f1fd89c5078478
+Merge: e82fc21 008dd0d
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Thu Nov 26 04:19:04 2015 +0100
+
+    Merge branch 'master' of https://github.com/mappz/map_repo
+
+commit e82fc2174c7be2bf73dd3b475fc729d45094c135
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Thu Nov 26 04:18:19 2015 +0100
+
+    [#10132] wysyłąenie wiadomosci, obsługa gravatara
+
+commit 008dd0d45c7d8301fb2022aba3db1ae71af42b07
+Merge: 1ca694b 3b70d78
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Nov 26 03:14:57 2015 +0100
+
+    Merge branch 'master' of https://github.com/mappz/map_repo
+
+commit 1ca694b230e7951bd8f933c7ab2368c4bda27604
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Nov 26 03:14:34 2015 +0100
+
+    [#10131] Dodanie navbara i navdravera, doadnie nowych markerów i podział funkcji na fragmenty
+
+commit 3b70d78d911fe2adcf6493993c3400e3ac55f82d
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Thu Nov 26 02:59:31 2015 +0100
+
+    [#10128] Poprawione aktualizowanie wiadomości
+
+commit 5078b2e54e722f6d12c6f022ec1bfd34322dcdc7
+Merge: fa6802b ab99ca7
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Thu Nov 26 02:50:39 2015 +0100
+
+    Merge branch 'master' of https://github.com/mappz/map_repo
+    
+    Conflicts:
+    	WEB/src/app/components/messages/messages.controller.js
+    + brakujaca dyrektywa
+
+commit fa6802b4ef711359fb0d7a4a7b353a43ffc6831c
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Thu Nov 26 02:49:24 2015 +0100
+
+    [#10128] Dodawanie konwersacji po przez klikniecie, wyswietlanie konwersacji z firebase na mapie
+
+commit ab99ca7d653b63dcc3125f31cdafcad1f5f2b743
+Author: Bartłomiej Styś <bartlomiej.stys@gmail.com>
+Date:   Thu Nov 26 02:39:56 2015 +0100
+
+    [#10129] Wysyłanie i odbieranie wiadomości, poprawki - WEB
+
+commit 453938f946161c8104a84f916a5450a6dae345ff
+Author: Bartłomiej Styś <bartlomiej.stys@gmail.com>
+Date:   Thu Nov 26 02:15:59 2015 +0100
+
+    [#10129] Wysyłanie i odbieranie wiadomości - WEB
+
+commit 57b41e42a591ad35463076fd025d0fc03e841201
+Merge: af143d7 5950335
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Nov 26 00:55:24 2015 +0100
+
+    Merge branch 'master' of https://github.com/mappz/map_repo
+
+commit af143d7dd6267bd14e82b9b4f6ce456c76bc13d4
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Thu Nov 26 00:54:33 2015 +0100
+
+    [#10122] Dodanie wyświetlania aktualnej pozycji, wyświetlanie wiadmości nad znacznikami na mapie
+
+commit 5950335f15fa7825ea4ea7a602839f3b40685ce6
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Thu Nov 26 00:03:56 2015 +0100
+
+    [#10127] Naprawienie działania autentykacji
+
+commit 62ea1bc306efa93be128cbafe6405c1958fe62de
+Author: Bartłomiej Styś <bartlomiej.stys@gmail.com>
+Date:   Wed Nov 25 23:49:06 2015 +0100
+
+    [#10126] Dodano komunikaty w toastr - logowanie WEB
+
+commit 567824132bb7e1b9994e1adc4618768ccb7ef5b7
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Wed Nov 25 23:37:00 2015 +0100
+
+    poprawione linki
+
+commit 93834a1c7caab332a2f640681db881b405ed8153
+Merge: bf3d357 9663e44
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Wed Nov 25 23:35:18 2015 +0100
+
+    Merge branch 'master' of https://github.com/mappz/map_repo
+    
+    Conflicts:
+    	WEB/src/app/map.app.js
+
+commit bf3d3579a6597203f15491815f311e50a2f21266
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Wed Nov 25 23:34:16 2015 +0100
+
+    [#10125] Logowanie
+
+commit 9663e44ce72c0c847de979b901482ce2d83e878d
+Author: Bartłomiej Styś <bartlomiej.stys@gmail.com>
+Date:   Wed Nov 25 23:31:45 2015 +0100
+
+    [#10124] Dodanie rejestracji użytkowników WEB
+
+commit 2b4d7c7eebce9ee228f90f952d34928df0413e1f
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Wed Nov 25 22:02:00 2015 +0100
+
+    Poprawka skryptu gulpa
+
+commit f66f849f2d8fd1d4a78650f2760a3ffbb45f0581
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Wed Nov 25 21:54:24 2015 +0100
+
+    [#10123] Wyświetlanie mapy
+
+commit 5012816482188aa12b7a082d2c272a7c5a85f5fd
+Author: msurowiec <marcins2009@gmail.com>
+Date:   Thu Nov 19 21:37:05 2015 +0100
+
+    #10121 Dodanie navbara i mapy, poprawiona konfiguracja skryptu gulpa
+
+commit 96ae89281a1fbf6e8026b4d4609fc4abd7615130
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Mon Oct 19 00:37:17 2015 +0200
+
+    [#9842] Pobieranie lokalizacji
+
+commit 4304e8cff40a56c720d7628e594db2a5f714610a
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Sun Oct 18 23:53:43 2015 +0200
+
+    [#9841 ] Pobranie wiadomości z api
+
+commit 42261d39ece2b55f9091e215bad6acc8d1aed5bc
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Sun Oct 18 23:20:36 2015 +0200
+
+    [#9839] Dodanie wyświetlania markerów na mapie
+
+commit 8db60bd05c166dd3dfe93423fe016ba2d67248d5
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Sun Oct 18 23:14:50 2015 +0200
+
+    [#9839] Dodanie wyświetlania markerów na mapie
+
+commit e4776a15b3a62f64ec413c54f7b84632f3ceb414
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Sun Oct 18 23:10:11 2015 +0200
+
+    [#9837] Dodanie filtrowania wiadomosci
+
+commit 3b97ceb47d04c458839b7c322ae9a8769bc9b611
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Sun Oct 18 23:03:17 2015 +0200
+
+    [#9838] Utworzenie klasy wiadomości
+
+commit 4010bebd0e53ae6b9d7448ba5375ff39464b4d13
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Sun Oct 18 21:51:48 2015 +0200
+
+    [#9837] Dodanie adaptera do wyswietlania wiadomosci
+
+commit c391135bf2ece2cec5aa8d0c93e4910cd5c5c8ae
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Sun Oct 18 21:42:11 2015 +0200
+
+    [#9727] Dodanie listenera do zatwierdzenia markerow w wybranym promieniu
+
+commit b2a7c9aa335f445065e30b5b7f1733a01ac29ee4
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Sun Oct 18 21:24:50 2015 +0200
+
+    [#9836] Dodanie inputType do textboxa z promieniem
+
+commit 9615ba6566895bb9a935950092406cb501062704
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Sun Oct 18 21:15:54 2015 +0200
+
+    [#9835] Dodanie textboxa oraz przycisku do wybrania promienia
+
+commit 8422eeba36a02337d62d4b7bfe351e6431796720
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Sun Oct 18 17:22:09 2015 +0200
+
+    [#9706] Rejestracja Android
+
+commit 91fe4e3c1df58f92d60dd900acfebb862984ba5d
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Sun Oct 18 17:21:33 2015 +0200
+
+    [#9706] Rejestracja Android
+
+commit 2435997e70b71998627c412c6b0e5a8618835a0b
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Sun Oct 18 16:58:38 2015 +0200
+
+    [#9831] widok rejestracji android
+
+commit 41ee1155d2b2693e9b0c977790574a65c5232e98
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Sun Oct 18 12:29:58 2015 +0200
+
+    [#9707] Android - logowanie anonimowe i email/haslo
+
+commit 7092f28e29467711df1f8431ea3fbf841e2dc243
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Sun Oct 18 12:28:07 2015 +0200
+
+    [#9833] Dodanie ukrywania hasla
+
+commit 3348f1f38b1a5998b76e921cf89b140e6c8c39bd
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Sun Oct 18 12:22:47 2015 +0200
+
+    [#9830] Layout logowania ANDROID
+
+commit 937b858952edde28114d13e8fe6a1ab7d711f2a8
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Sun Oct 18 12:13:15 2015 +0200
+
+    [#9830] Layout logowania ANDROID
+
+commit 5b02bd81e244599b17f1fd6960aa5ab7d6477ef8
+Author: lareth51 <faszcza.hubert@gmail.com>
+Date:   Sat Oct 17 20:27:47 2015 +0200
+
+    [#9829] ANDROID Utworzenie widoku z mapą
+
+commit dcaf10c78765182fcc86b033bcca83587e466894
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Sat Oct 17 18:35:09 2015 +0200
+
+    [#9828] Integracja Aplikacji Android z FireBase
+
+commit 3351588efd9423c4e6aff3f21232f457d09fb519
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Sat Oct 17 18:25:08 2015 +0200
+
+    zmiana target api na 21
+
+commit 6978df688285eeea44c27be0f25d298798edeb17
+Author: zarcel@gmail.com <zarcel@gmail.com>
+Date:   Sat Oct 17 18:04:18 2015 +0200
+
+    [#9827] Zmiana gitignore dla androida
+
+commit 3af998a7fea03d051e66a6ab4201486fb4d6ee52
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Sat Oct 17 17:36:03 2015 +0200
+
+    [#9826] Wstępny projekt części WEB
+    - zmiany w gitignore
+
+commit fae849793559537695051ee1c25629b0046752a8
+Author: hubert-faszcza <faszcza.hubert@gmail.com>
+Date:   Sat Oct 17 16:29:55 2015 +0200
+
+    [#9825] Utworzenie projektu Android
+
+commit 5d45e835d731be76cf6949ec557f22b78bb7b40b
+Author: Marcins Surowiec <msurowiec@lookatmycode.net>
+Date:   Sat Oct 17 15:57:07 2015 +0200
+
+    Struktura repo
+
+commit b3e716bafb3262cefcf74ced6e46997812f2db6f
+Author: mappz <marcins2009@gmail.com>
+Date:   Sat Oct 17 15:53:55 2015 +0200
+
+    [#9745] Uzupelnienie pliku README.md o przydatne informacje
+
+commit 78acdbbdd56b954d5b0fe2368e49a41e09a5a046
+Author: dumar <dumar@users.noreply.github.com>
+Date:   Sat Oct 17 15:11:31 2015 +0200
+
+    [#9745] Zmiana readme
+
+commit 952db1dbd4f82ef29c7f5d11e9d80d4619a6a2f2
+Author: dumar <dumar@users.noreply.github.com>
+Date:   Sat Oct 17 15:09:04 2015 +0200
+
+    Zmiana readme
+
+commit 2ea774dfe3fe8955027bc02774e6ff45c8342329
+Author: mappz <marcins2009@gmail.com>
+Date:   Sat Oct 17 14:52:00 2015 +0200
+
+    [#9745] Konfiguracja repozytorium
+
+commit 3cbbadb84f633398c5640f987a6254da9b3514de
+Author: mappz <marcins2009@gmail.com>
+Date:   Sat Oct 17 14:46:36 2015 +0200
+
+    Update README.md
+    
+    test2
+
+commit 5032133b0f3591fc4b3a6feb53ebd278884a04c5
+Author: mappz <marcins2009@gmail.com>
+Date:   Sat Oct 17 14:32:17 2015 +0200
+
+    Update README.md
+    
+    test
+
+commit 48c557f95a064b1447cb9755bd3e00061e088b93
+Author: mappz <marcins2009@gmail.com>
+Date:   Sat Oct 17 14:24:55 2015 +0200
+
+    Initial commit

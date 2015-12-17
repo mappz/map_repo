@@ -99,27 +99,32 @@ public class ReadMessagesFragment extends Fragment {
         ref = new Firebase("https://dazzling-fire-990.firebaseio.com/messages");
         buttonConfirmRadius = (Button) v.findViewById(R.id.confirm_radius);
         editText = (EditText) v.findViewById(R.id.radius);
-        buttonConfirmRadius.setOnClickListener(new View.OnClickListener() {
+        buttonConfirmRadius.setOnClickListener(new View.OnClickListener()
+        {
             public void onClick(View view) {
                 Toast.makeText(getContext(), "Wybrano promien=" + editText.getText(), Toast.LENGTH_LONG).show();
                 Double radius = Double.parseDouble(editText.getText().toString());
                 ref
                         .startAt(Double.valueOf(50 - radius).toString(), "latitude")
                         .endAt(Double.valueOf(50 + radius).toString(), "latitude");
-                ref.addValueEventListener(new ValueEventListener() {
+                ref.addValueEventListener(new ValueEventListener()
+                {
                     @Override
-                    public void onDataChange(DataSnapshot snapshot) {
+                    public void onDataChange(DataSnapshot snapshot)
+                    {
                         Log.e("Count ", "" + snapshot.getChildrenCount());
 
                         messages = new ArrayList<Message>();
 
-                        for (DataSnapshot postSnapshot : snapshot.getChildren()) {
+                        for (DataSnapshot postSnapshot : snapshot.getChildren())
+                        {
                             Message message = postSnapshot.getValue(Message.class);
                             messages.add(message);
                         }
                         adapter.setMessages(messages);
                         mMap.clear();
-                        for (Message message : messages) {
+                        for (Message message : messages)
+                        {
                             mMap.addMarker(new MarkerOptions()
                                     .position(new LatLng(message.getLatitude(),
                                             message.getLongtitude()))

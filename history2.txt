@@ -1,0 +1,84 @@
+ccb841a [#10178] zmiana nazw pol na polskojezyczne
+562cb42 poprawienie polozenia przyisku usuwania wiadomosci
+b1b47f7 [#10176] Dodanie layoutu czatu
+a9b6cf8 [#10174] edycja/usuwanie wiadomości przez admina i usera - WEB
+2bf2d0c [#10170] poprawa błędnego logowanie po rejestracji
+45a4f07 [#10170] Dodanie obsługi nowego formularza rejestracji w kontorlerze - naprawiony błąd wysyłania wiadomosci
+f0c2a9a [#10172] - Wdrożenie nowego modelu wiadomości - Usuwanie konwersacji -Edycja wiadmości - poprawa innych drobnijeszych żeczy
+d64f10c Merge branch 'master' of https://github.com/mappz/map_repo
+1f93988 [#10168] Troche backendu dla wiadomosci - WEB
+4fd510d [#10170] Rozbudowanie formularza rejestracji aby był zgodny z nowym modelem firebase
+f50ff2e [#10167] Naprawa bledu powodujacego dublowanie sie wiadomosci
+74285dd Drobne poprawki
+94c4195 [#10166] Animacje
+b66c15c [#10160] Poprawa responsywnoci okienka konwersacji
+b0058fb [#10159] Navbar zmienia sie zaleznie od tego czy urzytkownik jest zalogowany czy tez nie
+7200abc [#10158] Dodanie brakujacej zależności gulp-a, poprawa konfiguracji taska serve
+f8c2d12 [#10158] Konfiguracja gulp-webserver oraz poprawienie referencji do firebase w kontrolerze logowania
+d87fd39 Stworzenie serwisu zarrzadzajacego odwolaniami do firebase
+64baaf6 Merge branch 'master' of github.com:mappz/map_repo
+88620e3 Poprawa responsywnosci
+bd6d2ef dodanie klasy ze zla nazwa
+2f1a19c usuniecie klasy ze zla nazwa
+1bd1484 poprawki w nazwach klas
+e121a51 Merge branch 'master' of https://github.com/mappz/map_repo
+7149561 [#10134]  Dodanie widoku wysyłania wiadomosci
+bb4ac93 merge
+b295f18 [#10133] Dodanie fragmentu z grupami i adaptera do obsługi listy grup. Interfejsy z listenerami
+9897294 wylogowanie itd
+521230d Merge branch 'master' of https://github.com/mappz/map_repo
+b0c046a Dodani fragmenu z grupami
+21469b3 no message
+8c8b9c6 bugfixy
+30fce4f poprawka
+0e0213c Merge branch 'master' of https://github.com/mappz/map_repo
+e82fc21 [#10132] wysyłąenie wiadomosci, obsługa gravatara
+008dd0d Merge branch 'master' of https://github.com/mappz/map_repo
+1ca694b [#10131] Dodanie navbara i navdravera, doadnie nowych markerów i podział funkcji na fragmenty
+3b70d78 [#10128] Poprawione aktualizowanie wiadomości
+5078b2e Merge branch 'master' of https://github.com/mappz/map_repo
+fa6802b [#10128] Dodawanie konwersacji po przez klikniecie, wyswietlanie konwersacji z firebase na mapie
+ab99ca7 [#10129] Wysyłanie i odbieranie wiadomości, poprawki - WEB
+453938f [#10129] Wysyłanie i odbieranie wiadomości - WEB
+57b41e4 Merge branch 'master' of https://github.com/mappz/map_repo
+af143d7 [#10122] Dodanie wyświetlania aktualnej pozycji, wyświetlanie wiadmości nad znacznikami na mapie
+5950335 [#10127] Naprawienie działania autentykacji
+62ea1bc [#10126] Dodano komunikaty w toastr - logowanie WEB
+5678241 poprawione linki
+93834a1 Merge branch 'master' of https://github.com/mappz/map_repo
+bf3d357 [#10125] Logowanie
+9663e44 [#10124] Dodanie rejestracji użytkowników WEB
+2b4d7c7 Poprawka skryptu gulpa
+f66f849 [#10123] Wyświetlanie mapy
+5012816 #10121 Dodanie navbara i mapy, poprawiona konfiguracja skryptu gulpa
+96ae892 [#9842] Pobieranie lokalizacji
+4304e8c [#9841 ] Pobranie wiadomości z api
+42261d3 [#9839] Dodanie wyświetlania markerów na mapie
+8db60bd [#9839] Dodanie wyświetlania markerów na mapie
+e4776a1 [#9837] Dodanie filtrowania wiadomosci
+3b97ceb [#9838] Utworzenie klasy wiadomości
+4010beb [#9837] Dodanie adaptera do wyswietlania wiadomosci
+c391135 [#9727] Dodanie listenera do zatwierdzenia markerow w wybranym promieniu
+b2a7c9a [#9836] Dodanie inputType do textboxa z promieniem
+9615ba6 [#9835] Dodanie textboxa oraz przycisku do wybrania promienia
+8422eeb [#9706] Rejestracja Android
+91fe4e3 [#9706] Rejestracja Android
+2435997 [#9831] widok rejestracji android
+41ee115 [#9707] Android - logowanie anonimowe i email/haslo
+7092f28 [#9833] Dodanie ukrywania hasla
+3348f1f [#9830] Layout logowania ANDROID
+937b858 [#9830] Layout logowania ANDROID
+5b02bd8 [#9829] ANDROID Utworzenie widoku z mapą
+dcaf10c [#9828] Integracja Aplikacji Android z FireBase
+3351588 zmiana target api na 21
+6978df6 [#9827] Zmiana gitignore dla androida
+3af998a [#9826] Wstępny projekt części WEB - zmiany w gitignore
+fae8497 [#9825] Utworzenie projektu Android
+5d45e83 Struktura repo
+b3e716b [#9745] Uzupelnienie pliku README.md o przydatne informacje
+78acdbb [#9745] Zmiana readme
+952db1d Zmiana readme
+2ea774d [#9745] Konfiguracja repozytorium
+3cbbadb Update README.md
+5032133 Update README.md
+48c557f Initial commit
