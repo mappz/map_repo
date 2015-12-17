@@ -7,7 +7,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 import java.util.List;
 import pl.edu.wat.map.R;
-import pl.edu.wat.map.model.Message;
+import pl.edu.wat.map.model.Conversation;
 
 
 /**
@@ -16,18 +16,18 @@ import pl.edu.wat.map.model.Message;
 public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
 
     private LayoutInflater layoutInflater;
-    private List<Message> messages;
+    private List<Conversation> conversations;
     private Context context;
 
-    public MapMessageAdapter(List<Message> messages, LayoutInflater layoutInflater, Context context) {
-        this.messages = messages;
+    public MapMessageAdapter(List<Conversation> conversations, LayoutInflater layoutInflater, Context context) {
+        this.conversations = conversations;
         this.layoutInflater = layoutInflater;
         this.context = context;
     }
 
-    public void setMessages(List<Message> messages)
+    public void setConversations(List<Conversation> conversations)
     {
-        this.messages = messages;
+        this.conversations = conversations;
     }
 
     @Override
@@ -45,12 +45,12 @@ public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
 
         //find message for marker
         if(!marker.getTitle().equals(context.getResources().getString(R.string.your_position))) {
-            if(messages != null) {
-                for (Message message : messages) {
-                    if (marker.getPosition().longitude == message.getLongtitude() && marker.getPosition().latitude == message.getLatitude()) {
-                        messageText.setText(message.getContent());
-                        messageAuthor.setText(message.getAuthor());
-                        messageTime.setText(message.getDate().toString());
+            if(conversations != null) {
+                for (Conversation conversation : conversations) {
+                    if (marker.getPosition().longitude == conversation.getLongtitude() && marker.getPosition().latitude == conversation.getLatitude()) {
+                        messageText.setText(conversation.getContent());
+                        messageAuthor.setText(conversation.getAuthor().getName());
+                        messageTime.setText(conversation.getDate());
                         break;
                     }
                 }

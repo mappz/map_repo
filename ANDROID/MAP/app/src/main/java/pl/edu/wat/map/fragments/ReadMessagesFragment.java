@@ -19,14 +19,11 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -36,7 +33,7 @@ import java.util.List;
 
 import pl.edu.wat.map.R;
 import pl.edu.wat.map.adapters.MapMessageAdapter;
-import pl.edu.wat.map.model.Message;
+import pl.edu.wat.map.model.Conversation;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -51,7 +48,7 @@ public class ReadMessagesFragment extends Fragment {
     private Button buttonConfirmRadius;
     private EditText editText;
     private MapView mapView;
-    private List<Message> messages;
+    private List<Conversation> conversations;
     private Firebase ref;
     private MapMessageAdapter adapter;
     private Location mLocation;
@@ -84,46 +81,47 @@ public class ReadMessagesFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_read_messages, container, false);
         mapView = (MapView) v.findViewById(R.id.mapView);
         mapView.onCreate(savedInstanceState);
-        mLocationManager = (LocationManager) getContext().getSystemService(getContext().LOCATION_SERVICE);
-        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10,
-                10, locationListener);
+        mLocationManager = (LocationManager) getActivity().getSystemService(getActivity().LOCATION_SERVICE);
+        mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0,
+                0, locationListener);
+
 
         try {
-            MapsInitializer.initialize(getContext());
+            MapsInitializer.initialize(getActivity());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        adapter =  new MapMessageAdapter(messages, getActivity().getLayoutInflater(), getContext());
-        Firebase.setAndroidContext(getContext());
-        ref = new Firebase("https://dazzling-fire-990.firebaseio.com/messages");
+        adapter =  new MapMessageAdapter(conversations, getActivity().getLayoutInflater(), getActivity());
+        Firebase.setAndroidContext(getActivity());
+        ref = new Firebase("https://dazzling-fire-990.firebaseio.com/conversations");
         buttonConfirmRadius = (Button) v.findViewById(R.id.confirm_radius);
         editText = (EditText) v.findViewById(R.id.radius);
         buttonConfirmRadius.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Toast.makeText(getContext(), "Wybrano promien=" + editText.getText(), Toast.LENGTH_LONG).show();
-                Double radius = Double.parseDouble(editText.getText().toString());
+                Toast.makeText(getActivity(), "Wybrano promien=" + editText.getText(), Toast.LENGTH_LONG).show();
+              /*  Double radius = Double.parseDouble(editText.getText().toString());
                 ref
                         .startAt(Double.valueOf(50 - radius).toString(), "latitude")
-                        .endAt(Double.valueOf(50 + radius).toString(), "latitude");
+                        .endAt(Double.valueOf(50 + radius).toString(), "latitude");*/
                 ref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot snapshot) {
                         Log.e("Count ", "" + snapshot.getChildrenCount());
 
-                        messages = new ArrayList<Message>();
+                        conversations = new ArrayList<Conversation>();
 
                         for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                            Message message = postSnapshot.getValue(Message.class);
-                            messages.add(message);
+                            Conversation conversation = postSnapshot.getValue(Conversation.class);
+                            conversations.add(conversation);
                         }
-                        adapter.setMessages(messages);
+                        adapter.setConversations(conversations);
                         mMap.clear();
-                        for (Message message : messages) {
+                        for (Conversation conversation : conversations) {
                             mMap.addMarker(new MarkerOptions()
-                                    .position(new LatLng(message.getLatitude(),
-                                            message.getLongtitude()))
-                                    .title(message.getAuthor())
+                                    .position(new LatLng(conversation.getLatitude(),
+                                            conversation.getLongtitude()))
+                                    .title(conversation.getAuthor().getName())
                                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.message)));
                         }
                     }

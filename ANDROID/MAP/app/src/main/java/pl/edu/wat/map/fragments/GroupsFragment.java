@@ -3,7 +3,6 @@ package pl.edu.wat.map.fragments;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.RequiresPermission;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -13,7 +12,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import pl.edu.wat.map.R;
 import pl.edu.wat.map.adapters.GroupListAdapter;
@@ -55,11 +53,11 @@ public class GroupsFragment extends Fragment {
         groups.add("Sport");
         ListView groupList = (ListView) view.findViewById(R.id.group_list);
         GroupListAdapter adapter =
-                new GroupListAdapter(getContext(), R.layout.cell_groups_item, groups);
+                new GroupListAdapter(getActivity(), R.layout.cell_groups_item, groups);
         adapter.setOnClickListener(new OnGroupClickListener() {
             @Override
             public void onGroupClickListener(String item) {
-                Toast.makeText(getContext(), "Wygrano grupe " + item, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Wygrano grupe " + item, Toast.LENGTH_LONG).show();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 ReadMessagesFragment readMessagesFragment = new ReadMessagesFragment();
                 transaction.replace(R.id.fragment_container, readMessagesFragment, ReadMessagesFragment.class.getName());
@@ -70,7 +68,7 @@ public class GroupsFragment extends Fragment {
         adapter.setOnSubscribeClickListener(new OnSubscribeClickListener() {
             @Override
             public void onSubscribeClick(String item) {
-                Toast.makeText(getContext(), "Dodano grupe " + item + " do subskrybowanych",
+                Toast.makeText(getActivity(), "Dodano grupe " + item + " do subskrybowanych",
                         Toast.LENGTH_LONG).show();
             }
         });
