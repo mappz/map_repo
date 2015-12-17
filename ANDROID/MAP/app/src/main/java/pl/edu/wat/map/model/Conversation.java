@@ -1,6 +1,7 @@
 package pl.edu.wat.map.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Lareth on 2015-10-18.
@@ -13,11 +14,11 @@ public class Conversation {
     private String category;
     private double latitude;
     private double longtitude;
-    private ArrayList<Message> messages;
+    private List<Message> messages;
 
     // Required default constructor for Firebase object mapping
     @SuppressWarnings("unused")
-    private Conversation() {
+    public Conversation() {
     }
 
     public Conversation(Author author, String content, String date, String category, double latitude, double longtitude, ArrayList<Message> messages) {
@@ -78,7 +79,7 @@ public class Conversation {
         this.longtitude = longtitude;
     }
 
-    public ArrayList<Message> getMessages() {
+    public List<Message> getMessages() {
         return messages;
     }
 

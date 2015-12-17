@@ -27,12 +27,14 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.nearby.messages.Messages;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import pl.edu.wat.map.R;
 import pl.edu.wat.map.adapters.MapMessageAdapter;
+import pl.edu.wat.map.model.Author;
 import pl.edu.wat.map.model.Conversation;
 
 /**
@@ -54,7 +56,6 @@ public class ReadMessagesFragment extends Fragment {
     private Location mLocation;
     private LocationManager mLocationManager;
     private boolean firtsPosition = true;
-
     private Marker positionMarker;
 
     private OnFragmentInteractionListener mListener;
@@ -76,7 +77,7 @@ public class ReadMessagesFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_read_messages, container, false);
         mapView = (MapView) v.findViewById(R.id.mapView);
@@ -92,11 +93,13 @@ public class ReadMessagesFragment extends Fragment {
             e.printStackTrace();
         }
 
-        adapter =  new MapMessageAdapter(conversations, getActivity().getLayoutInflater(), getActivity());
+        adapter = new MapMessageAdapter(conversations, getActivity().getLayoutInflater(), getActivity());
         Firebase.setAndroidContext(getActivity());
         ref = new Firebase("https://dazzling-fire-990.firebaseio.com/conversations");
+
         buttonConfirmRadius = (Button) v.findViewById(R.id.confirm_radius);
         editText = (EditText) v.findViewById(R.id.radius);
+
         buttonConfirmRadius.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Toast.makeText(getActivity(), "Wybrano promien=" + editText.getText(), Toast.LENGTH_LONG).show();
@@ -112,7 +115,19 @@ public class ReadMessagesFragment extends Fragment {
                         conversations = new ArrayList<Conversation>();
 
                         for (DataSnapshot postSnapshot : snapshot.getChildren()) {
-                            Conversation conversation = postSnapshot.getValue(Conversation.class);
+                            Conversation conversation = new Conversation();
+                            Author author = (Author) postSnapshot.child("author").getValue(Author.class);
+                            String category = (String) postSnapshot.child("category").getValue();
+                            String date = (String) postSnapshot.child("date").getValue();
+                            Double latitude = (Double) postSnapshot.child("latitude").getValue();
+                            Double longitude = (Double) postSnapshot.child("longitude").getValue();
+                            ArrayList<Messages> messages = (ArrayList) postSnapshot.child("messages").getValue();
+                            conversation.setAuthor(author);
+                            conversation.setCategory(category);
+                            conversation.setDate(date);
+                            conversation.setLatitude(latitude);
+                            conversation.setLongtitude(longitude);
+                            conversation.setCategory(category);
                             conversations.add(conversation);
                         }
                         adapter.setConversations(conversations);
@@ -162,6 +177,7 @@ public class ReadMessagesFragment extends Fragment {
         mMap = mapView.getMap();
         mMap.setInfoWindowAdapter(adapter);
     }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -180,13 +196,13 @@ public class ReadMessagesFragment extends Fragment {
     public final LocationListener locationListener = new LocationListener() {
         public void onLocationChanged(Location location) {
             mLocation = location;
-            if(positionMarker != null)positionMarker.remove();
+            if (positionMarker != null) positionMarker.remove();
             positionMarker = mMap.addMarker(new MarkerOptions()
                     .position(new LatLng(mLocation.getLatitude(),
                             mLocation.getLongitude()))
                     .title(getResources().getString(R.string.your_position))
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.location)));
-            if(firtsPosition) {
+            if (firtsPosition) {
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                         new LatLng(mLocation.getLatitude(), mLocation.getLongitude()), 17));
                 firtsPosition = false;
@@ -208,5 +224,6 @@ public class ReadMessagesFragment extends Fragment {
 
         }
     };
+
 
 }
