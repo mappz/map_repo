@@ -1,6 +1,8 @@
 package pl.edu.wat.map.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -9,19 +11,20 @@ import java.util.ArrayList;
  * @version 1
  * @since 17/12/2015
  */
-public class Conversation {
+public class Conversation implements Serializable {
 
+    private String id;
     private Author author;
     private String content;
     private String date;
     private String category;
     private double latitude;
     private double longtitude;
-    private ArrayList<Message> messages;
+    private List<Message> messages;
 
     // Required default constructor for Firebase object mapping
     @SuppressWarnings("unused")
-    private Conversation() {
+    public Conversation() {
     }
 
     public Conversation(Author author, String content, String date, String category, double latitude, double longtitude, ArrayList<Message> messages) {
@@ -32,6 +35,14 @@ public class Conversation {
         this.latitude = latitude;
         this.longtitude = longtitude;
         this.messages = messages;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public Author getAuthor() {
@@ -82,7 +93,7 @@ public class Conversation {
         this.longtitude = longtitude;
     }
 
-    public ArrayList<Message> getMessages() {
+    public List<Message> getMessages() {
         return messages;
     }
 
