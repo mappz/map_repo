@@ -37,12 +37,21 @@ public class MapMessageAdapter implements GoogleMap.InfoWindowAdapter {
         this.conversations = conversations;
     }
 
+    /**
+     * Gets info window
+     * @param marker Map marker
+     * @return null
+	 */
     @Override
     public View getInfoWindow(Marker marker) {
         return null;
     }
 
-
+	/**
+     * Gets info contents
+     * @param marker Map marker
+     * @return view
+     */
     @Override
     public View getInfoContents(Marker marker) {
         View view = layoutInflater.inflate(R.layout.message_window, null);

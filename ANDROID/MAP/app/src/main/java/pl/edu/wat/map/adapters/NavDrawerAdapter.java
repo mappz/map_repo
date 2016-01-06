@@ -44,7 +44,12 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.View
 
     // Creating a ViewHolder which extends the RecyclerView View Holder
     // ViewHolder are used to to store the inflated views in order to recycle them
-
+    /**
+     * Helper class for holding views
+     * @author Hubert Faszcza
+     * @version 1
+     * @since 17/12/2015
+     */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
@@ -80,6 +85,12 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.View
     // if the viewType is TYPE_HEADER
     // and pass it to the view holder
 
+    /**
+     * Called when ViewHolder is created
+     * @param parent parent View
+     * @param viewType view type
+     * @return ViewHolder Instance
+	 */
     @Override
     public NavDrawerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -112,6 +123,12 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.View
     //Next we override a method which is called when the item in a row is needed to be displayed, here the int position
     // Tells us item at which position is being constructed to be displayed and the holder id of the holder object tell us
     // which view type is being created 1 for item row
+
+	/**
+     * Called when View Holder is bind
+     * @param holder ViewHolder instance
+     * @param position position
+     */
     @Override
     public void onBindViewHolder(NavDrawerAdapter.ViewHolder holder, int position)
     {
@@ -125,13 +142,22 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.View
 
 
     // This method returns the number of items present in the list
+
+	/**
+     * Returns item count
+     * @return item count
+     */
     @Override
     public int getItemCount() {
         return mNavTitles.length+1; // the number of items in the list will be +1 the titles including the header view.
     }
 
-
-    // Witht the following method we check what type of view is being passed
+    /**
+     * With the following method we check what type of view is being passed
+     * @param position position of the view
+     * @return type
+	 */
+    //
     @Override
     public int getItemViewType(int position) {
         if (isPositionHeader(position))
@@ -140,6 +166,11 @@ public class NavDrawerAdapter extends RecyclerView.Adapter<NavDrawerAdapter.View
         return TYPE_ITEM;
     }
 
+    /**
+     * Check wheter position is header or not
+     * @param position item position
+     * @return boolean
+	 */
     private boolean isPositionHeader(int position) {
         return position == 0;
     }

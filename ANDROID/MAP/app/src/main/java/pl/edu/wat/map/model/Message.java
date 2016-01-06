@@ -1,8 +1,5 @@
 package pl.edu.wat.map.model;
 
-/**
- * Created by marcel on 2015-12-10.
- */
 
 /**
  * Model class for message

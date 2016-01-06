@@ -1,7 +1,5 @@
 package pl.edu.wat.map.fragments;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -33,12 +31,23 @@ public class GroupsFragment extends Fragment {
         // Required empty public constructor
     }
 
+	/**
+     * Android OS method called when activity is created
+     * @param savedInstanceState saved activity state
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
     }
 
+	/**
+     * Android OS method called when view is created
+     * @param inflater inflater
+     * @param container ViewGroup container
+     * @param savedInstanceState previous activity state
+     * @return View
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -84,25 +93,5 @@ public class GroupsFragment extends Fragment {
         return view;
     }
 
-    public void onButtonPressed(Uri uri)
-    {
-    }
-
-    @Override
-    public void onAttach(Activity activity)
-    {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onDetach()
-    {
-        super.onDetach();
-    }
-
-    public interface OnFragmentInteractionListener
-    {
-        public void onFragmentInteraction(Uri uri);
-    }
 
 }

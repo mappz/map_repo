@@ -1,8 +1,6 @@
 package pl.edu.wat.map.fragments;
 
-import android.app.Activity;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -18,15 +16,11 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
 import pl.edu.wat.map.R;
 import pl.edu.wat.map.adapters.ConversationAdapter;
-import pl.edu.wat.map.model.Author;
 import pl.edu.wat.map.model.Conversation;
 import pl.edu.wat.map.model.Message;
 
@@ -47,15 +41,14 @@ public class SendMessagesFragment extends Fragment implements View.OnClickListen
     private final String param1 = "conversation";
     private Conversation conversation;
 
-    public static SendMessagesFragment newInstance() {
-        SendMessagesFragment fragment = new SendMessagesFragment();
-        return fragment;
-    }
 
     public SendMessagesFragment() {
         // Required empty public constructor
     }
-
+    /**
+     * Android OS method called when activity is created
+     * @param savedInstanceState saved activity state
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -63,7 +56,13 @@ public class SendMessagesFragment extends Fragment implements View.OnClickListen
         conversation = (Conversation) getArguments().getSerializable("conversation");
 //        conversationId = savedInstanceState.getString(param1);
     }
-
+    /**
+     * Android OS method called when view is created
+     * @param inflater inflater
+     * @param container ViewGroup container
+     * @param savedInstanceState previous activity state
+     * @return View
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -106,20 +105,11 @@ public class SendMessagesFragment extends Fragment implements View.OnClickListen
         return v ;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-    }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
+    /**
+     * Android OS method called when view is clicked
+     * @param v clicked view
+	 */
     @Override
     public void onClick(View v) {
         Context context = getActivity();
@@ -131,9 +121,6 @@ public class SendMessagesFragment extends Fragment implements View.OnClickListen
     }
 
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-    }
+
 
 }

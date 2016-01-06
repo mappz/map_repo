@@ -1,6 +1,5 @@
 package pl.edu.wat.map.fragments;
 
-import android.app.Activity;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -31,7 +30,6 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.nearby.messages.Messages;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import pl.edu.wat.map.R;
 import pl.edu.wat.map.adapters.MapMessageAdapter;
@@ -60,21 +58,26 @@ public class ReadMessagesFragment extends Fragment implements GoogleMap.OnInfoWi
     private OnFragmentInteractionListener mListener;
 
 
-    public static ReadMessagesFragment newInstance() {
-        ReadMessagesFragment fragment = new ReadMessagesFragment();
-        return fragment;
-    }
 
     public ReadMessagesFragment() {
         // Required empty public constructor
     }
-
+    /**
+     * Android OS method called when activity is created
+     * @param savedInstanceState saved activity state
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-
+    /**
+     * Android OS method called when view is created
+     * @param inflater inflater
+     * @param container ViewGroup container
+     * @param savedInstanceState previous activity state
+     * @return View
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
@@ -153,12 +156,10 @@ public class ReadMessagesFragment extends Fragment implements GoogleMap.OnInfoWi
         return v;
     }
 
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
 
-    }
-
+    /**
+     * Android OS method called when fragment is detached
+     */
     @Override
     public void onDetach() {
         super.onDetach();
@@ -180,6 +181,10 @@ public class ReadMessagesFragment extends Fragment implements GoogleMap.OnInfoWi
         mMap.setOnInfoWindowClickListener(this);
     }
 
+    /**
+     * Called when info windows is clicked
+     * @param marker Map marker
+	 */
     @Override
     public void onInfoWindowClick(Marker marker)
     {
@@ -222,8 +227,15 @@ public class ReadMessagesFragment extends Fragment implements GoogleMap.OnInfoWi
         public void onFragmentInteraction(Uri uri);
     }
 
+	/**
+     * Location listener class
+     */
     public final LocationListener locationListener = new LocationListener()
     {
+		/**
+         * Called when location has been changed
+         * @param location new Location
+         */
         public void onLocationChanged(Location location)
         {
             mLocation = location;
@@ -241,21 +253,33 @@ public class ReadMessagesFragment extends Fragment implements GoogleMap.OnInfoWi
             }
         }
 
+        /**
+         * Called when status is changed
+         * @param provider provider
+         * @param status status
+         * @param extras extra data
+		 */
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
 
         }
 
+        /**
+         * Called when provider is enabled
+         * @param provider provider name
+		 */
         @Override
         public void onProviderEnabled(String provider) {
 
         }
 
+        /**
+         * Called when provider is disabled
+         * @param provider provider name
+		 */
         @Override
         public void onProviderDisabled(String provider) {
 
         }
     };
-
-
 }

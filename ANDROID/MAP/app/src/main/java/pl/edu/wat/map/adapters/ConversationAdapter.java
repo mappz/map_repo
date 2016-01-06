@@ -3,15 +3,16 @@ package pl.edu.wat.map.adapters;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 
-
 import java.util.ArrayList;
-import java.util.List;
 
 import pl.edu.wat.map.R;
 import pl.edu.wat.map.model.Message;
 
 /**
- * Created by Lareth on 2015-12-03.
+ * Adapter for Conversations
+ * @author Marcel Paduch
+ * @version 1
+ * @since 17/12/2015
  */
 public class ConversationAdapter extends ArrayAdapter<Message> {
 
