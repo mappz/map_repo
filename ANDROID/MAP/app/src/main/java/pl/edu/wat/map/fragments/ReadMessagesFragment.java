@@ -125,7 +125,6 @@ public class ReadMessagesFragment extends Fragment implements GoogleMap.OnInfoWi
                             String date = (String) postSnapshot.child("date").getValue();
                             Double latitude = (Double) postSnapshot.child("latitude").getValue();
                             Double longitude = (Double) postSnapshot.child("longitude").getValue();
-                            ArrayList<Messages> messages = (ArrayList) postSnapshot.child("messages").getValue();
                             String id = postSnapshot.getKey();
                             conversation.setId(id);
                             conversation.setAuthor(author);

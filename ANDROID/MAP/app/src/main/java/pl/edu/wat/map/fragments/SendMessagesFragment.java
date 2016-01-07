@@ -23,7 +23,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.nearby.messages.Messages;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,7 +39,7 @@ import pl.edu.wat.map.model.Message;
 /**
  * Fragment used as container for send messages view
  *
- * @author Marcel Paduch
+ * @author Hubert Faszcza
  * @version 1
  * @since 17/12/2015
  */
@@ -87,7 +90,6 @@ public class SendMessagesFragment extends Fragment implements View.OnClickListen
         chatList = (ListView) v.findViewById(R.id.list);
         mFirebaseRef = new Firebase("https://dazzling-fire-990.firebaseio.com/conversations/" + conversation.getId() + "/messages");
 
-
         mFirebaseRef.addValueEventListener(new ValueEventListener()
         {
             @Override
@@ -120,13 +122,27 @@ public class SendMessagesFragment extends Fragment implements View.OnClickListen
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String text = textEdit.getText().toString();
-                messages.toString();
-        /*        Map<String, Object> values = new HashMap<>();
-          //      values.put("name", userName);
-                values.put("text", text);
-                mFirebaseRef.push().setValue(values);
-                textEdit.setText("");*/
+                if(!textEdit.getText().toString().equals("")) {
+                    Message message = new Message();
+                    message.setContent(textEdit.getText().toString());
+                    Author author = new Author();
+                    try {
+                        String userName = mFirebaseRef.getAuth().getProviderData().get("email").toString();
+                        author.setName(userName);
+                        author.setUid(mFirebaseRef.getAuth().getUid());
+                    } catch (Exception e) {
+                        author.setName("Anonim");
+                        author.setUid("empty");
+                    }
+                    author.setAvatarUrl("https://secure.gravatar.com/avatar/c1ede7abf7bab660fea720609690d9f5?d=retro");
+                    DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyy, HH:mm:ss");
+                    Date date = new Date();
+                    message.setDate(dateFormat.format(date));
+                    message.setAuthor(author);
+                    Map<String, Object> values = new HashMap<>();
+                    mFirebaseRef.push().setValue(message);
+                    textEdit.setText("");
+                }
             }
         });
 

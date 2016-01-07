@@ -18,7 +18,7 @@ import pl.edu.wat.map.R;
 
 /**
  * Login activity used to login and register in application
- * @author Hubert Faszcza
+ * @author Marcel Paduch
  * @version 1
  * @since 17/12/2015
  */

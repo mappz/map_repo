@@ -1,7 +1,7 @@
 package pl.edu.wat.map.model;
 
 /**
- * Created by Lareth on 2016-01-06.
+ * Created by Hubert Faszcza on 2016-01-06.
  */
 public class Author {
     private String avatarUrl;
