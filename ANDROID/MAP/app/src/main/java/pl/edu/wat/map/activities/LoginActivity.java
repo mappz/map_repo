@@ -198,7 +198,7 @@ public class LoginActivity extends ActionBarActivity  {
     /**
      * Unauthenticate from Firebase and from providers where necessary.
      */
-    private void logout() {
+    public void logout() {
         if (this.mAuthData != null) {
             /* logout of Firebase */
             mFirebaseRef.unauth();
@@ -298,7 +298,7 @@ public class LoginActivity extends ActionBarActivity  {
             setAuthenticatedUser(authData);
 
             Context context = getApplicationContext();
-            CharSequence text = "Zalogowano: "+ mEmailEditText.getText();
+            CharSequence text = "Zalogowano";
             int duration = Toast.LENGTH_SHORT;
 
             Toast toast = Toast.makeText(context, text, duration);
@@ -349,7 +349,7 @@ public class LoginActivity extends ActionBarActivity  {
      *             ANONYMOUSLY            *
      **************************************
      */
-    private void loginAnonymously() {
+    public void loginAnonymously() {
         mAuthProgressDialog.show();
         mFirebaseRef.authAnonymously(new AuthResultHandler("anonymous"));
     }
