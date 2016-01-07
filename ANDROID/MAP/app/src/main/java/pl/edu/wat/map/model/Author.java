@@ -1,47 +1,45 @@
 package pl.edu.wat.map.model;
 
-
 /**
- * Model class for author
- * @author Marcel Paduch
- * @version 1
- * @since 17/12/2015
+ * Created by Hubert Faszcza on 2016-01-06.
  */
 public class Author {
-	private String avatarUrl;
-	private String name;
-	private String uid;
-	public Author(){
+    private String avatarUrl;
+    private String name;
+    private String uid;
 
-	}
-	public String getAvatarUrl() {
-		return avatarUrl;
-	}
+    public Author() {
 
-	public void setAvatarUrl(String avatarUrl) {
-		this.avatarUrl = avatarUrl;
-	}
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
 
-	public String getUid() {
-		return uid;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setUid(String uid) {
-		this.uid = uid;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Author(String avatarUrl, String name, String uid) {
+    public String getUid() {
+        return uid;
+    }
 
-		this.avatarUrl = avatarUrl;
-		this.name = name;
-		this.uid = uid;
-	}
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public Author(String avatarUrl, String name, String uid) {
+
+        this.avatarUrl = avatarUrl;
+        this.name = name;
+        this.uid = uid;
+    }
 }

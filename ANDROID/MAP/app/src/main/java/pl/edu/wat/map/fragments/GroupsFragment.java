@@ -18,7 +18,7 @@ import pl.edu.wat.map.utils.OnSubscribeClickListener;
 
 /**
  * Fragment used as container for groups view
- * @author Marcel Paduch
+ * @author Hubert Faszcza
  * @version 1
  * @since 17/12/2015
  */
