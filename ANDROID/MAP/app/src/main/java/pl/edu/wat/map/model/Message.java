@@ -1,6 +1,12 @@
 package pl.edu.wat.map.model;
 
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Model class for message
  * @author Hubert Faszcza
@@ -13,13 +19,15 @@ public class Message {
 	private String date;
 
 	public Message(){
-
 	}
-	public Author getAuthor() {
+
+
+	public  Author getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(Author author) {
+
+	public void setAuthor( Author author) {
 		this.author = author;
 	}
 
@@ -39,8 +47,7 @@ public class Message {
 		this.date = date;
 	}
 
-	public Message(Author author, String content, String date) {
-
+	public Message( Author author, String content, String date) {
 		this.author = author;
 		this.content = content;
 		this.date = date;

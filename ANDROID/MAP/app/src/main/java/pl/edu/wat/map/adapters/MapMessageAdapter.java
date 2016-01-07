@@ -12,7 +12,7 @@ import pl.edu.wat.map.model.Conversation;
 
 /**
  * This adapter maps messages to points on map
- * @author Marcel Paduch
+ * @author Hubert Faszcza
  * @version 1
  * @since 17/12/2015
  */

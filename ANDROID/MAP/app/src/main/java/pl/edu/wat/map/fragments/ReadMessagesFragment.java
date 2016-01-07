@@ -35,10 +35,11 @@ import pl.edu.wat.map.R;
 import pl.edu.wat.map.adapters.MapMessageAdapter;
 import pl.edu.wat.map.model.Author;
 import pl.edu.wat.map.model.Conversation;
+import pl.edu.wat.map.model.Message;
 
 /**
  * Fragment used as container for read messages view
- * @author Marcel Paduch
+ * @author Hubert Faszcza
  * @version 1
  * @since 17/12/2015
  */
@@ -109,7 +110,8 @@ public class ReadMessagesFragment extends Fragment implements GoogleMap.OnInfoWi
                 ref
                         .startAt(Double.valueOf(50 - radius).toString(), "latitude")
                         .endAt(Double.valueOf(50 + radius).toString(), "latitude");*/
-                ref.addValueEventListener(new ValueEventListener() {
+                ref.addValueEventListener(new ValueEventListener()
+                {
                     @Override
                     public void onDataChange(DataSnapshot snapshot) {
                         Log.e("Count ", "" + snapshot.getChildrenCount());

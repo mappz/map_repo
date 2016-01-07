@@ -27,7 +27,7 @@ import pl.edu.wat.map.utils.OnMenuItemClickListener;
 /**
  *  Main activity is used as a container for fragments
  * It is first activity displayed if user is logged in
- * @author Marcel Paduch
+ * @author Hubert Faszcza
  * @version 1
  * @since 17/12/2015
  */
