@@ -1,6 +1,17 @@
 var conversationService = angular.module("conversationService", [])
-
-conversationService.factory("conversationFactory", function() {
+/**
+ * Conversation factory
+ * @returns {undefined} nothing
+ */
+ var conversationFactory = function() {
+/**
+ * Crate conversation
+ * @param author of conversation
+ * @param category conversation category
+ * @param lat latitude
+ * @param long longtitude
+ * @returns {convarsation} convarsation object
+ */
     var createConversation = function(author, category, lat, long) {
         return {
             author: author,
@@ -11,7 +22,12 @@ conversationService.factory("conversationFactory", function() {
             messages: []
         }
     }
-
+/**
+ * Crate message object
+ * @param author of conversation
+ * @param content content of the messege
+ * @returns {message} message object
+ */
     var createMessage = function(author, content) {
         return {
             content: content,
@@ -19,14 +35,25 @@ conversationService.factory("conversationFactory", function() {
             date: new Date().toLocaleString()
         }
     }
-
+/**
+ * Adds message to conversation
+ * @param conversation conversation object
+ * @param message new message
+ * @returns {undefined} nothing
+ */
     var addMessageToConversation = function(conversation, message) {
         if (conversation.messages == null)
             conversation.messages = [];
 
         conversation.messages.push(message);
     }
-
+/**
+ * Creates author object
+ * @param uid unique user id
+ * @param name user name
+ * @param avatarUrl url to avatar image
+ * @returns {undefined} nothing
+ */
     var createAuthorModel = function(uid, name, avatarUrl) {
         return {
             uid: uid,
@@ -40,4 +67,5 @@ conversationService.factory("conversationFactory", function() {
         addMessageToConversation: addMessageToConversation,
         createAuthorModel: createAuthorModel
     }
-})
+}
+conversationService.factory("conversationFactory",conversationFactory);

@@ -6,6 +6,9 @@ registrationModule.controller('registrationController', ['$scope', '$http', 'toa
     $scope.open = function($event) {
         $scope.calendarStatus = true;
     };
+    /**
+    Array of available categories
+    */
     $scope.categoriesList = [{
         name: 'Sport',
         val: 'sport',
@@ -19,6 +22,10 @@ registrationModule.controller('registrationController', ['$scope', '$http', 'toa
         name: 'Meet',
         val: 'meet',
     }]
+    /**
+     * Register user in firebase
+     * @returns {undefined} nothing
+    */
     $scope.createUser = function() {
         $scope.message = null;
         $scope.error = null;

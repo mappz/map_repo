@@ -1,8 +1,28 @@
 var fireService = angular.module("fireService", []);
-fireService.factory("fire", function() {
+/**
+ * Factory that keeps data for api comunication
+ * @return ref firebase referance,
+ * @return messages firebase message referance,
+ * @return userEx userEx firebase reference,
+ * @return conversations conversations firebase reference,
+ * @return all reference to all messages
+ */
+var fireFactory = function() {
+/**
+ * Aplication URL
+ */
     var applicationURL = "https://dazzling-fire-990.firebaseio.com";
+/**
+ * message model name
+ */
     var messageModel = "messages";
+/**
+ * convarsation model name
+ */
     var conversationModel = "conversations";
+/**
+ * user extended data model name
+ */
     var userExtraDataModel = "userEx";
 
     var ref_x = new Firebase(applicationURL);
@@ -18,4 +38,5 @@ fireService.factory("fire", function() {
         conversations: conversations_x,
         all: all_x
     }
-});
+};
+fireService.factory("fire", fireFactory);

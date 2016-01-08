@@ -8,6 +8,7 @@ var stripDebug = require('gulp-strip-debug');
 var minifyCSS = require('gulp-minify-css');
 var beautify = require('gulp-beautify');
 var webserver = require('gulp-webserver');
+var documentation = require('gulp-documentation');
 
 var base = {
     src: 'src/',
@@ -20,6 +21,7 @@ var paths = {
     css: ['css/**/*.css'],
     js: ['js/**/*.js'],
     app: ['app/**/*.js'],
+    tests: ['tests/**/*.js'],
 };
 
 gulp.task('cleanDest', function() {
@@ -163,6 +165,15 @@ gulp.task('bf', function() {
         .pipe(gulp.dest(base.src + "app/"));
 });
 
+gulp.task('bft', function() {
+    gulp.src(paths.tests, {
+            cwd: base.src
+        })
+        .pipe(beautify({
+            indentSize: 2
+        }))
+        .pipe(gulp.dest(base.src + "tests/"));
+});
 gulp.task('watch', ['index'], function() {
     gulp.watch(paths.app.concat(paths.css).concat(paths.js).concat(['src/**/*.html']), ['index']);
 });
@@ -186,3 +197,8 @@ gulp.task('serve', function() {
             port: 80
         }));
 });
+gulp.task('doc',function(){
+    gulp.src(paths.app,{cwd:base.src})
+        .pipe(documentation({format: 'html'}))
+        .pipe(gulp.dest('html-documentation'));
+})

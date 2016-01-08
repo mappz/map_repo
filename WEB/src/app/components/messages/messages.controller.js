@@ -45,7 +45,7 @@ messagesModule.controller('messagesController', ['$scope', '$http', 'currentAuth
         if (evt.event === 'child_added') {
             $scope.conversations[conversationId]
             $scope.markers.push({
-                // layer: 'messages',
+                 layer: 'messages',
                 msgKey: evt.key,
                 lat: $scope.conversations[conversationId].latitude,
                 lng: $scope.conversations[conversationId].longitude,

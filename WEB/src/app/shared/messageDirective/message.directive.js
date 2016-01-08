@@ -1,5 +1,9 @@
 var messageDirectives = angular.module('messageDirective', []);
-messageDirectives.directive("conversationPopup", ['$cookies', 'toastr', 'fire', '$filter', 'moment', 'conversationFactory', 'Auth', function($cookies, toastr, Fire, $filter, moment, conversationFactory, Auth) {
+/**
+ * Message directive
+ * @returns {undefined} nothing
+ */
+ var conversationDirective = function($cookies, toastr, Fire, $filter, moment, conversationFactory, Auth) {
     return {
         restrict: 'E',
         scope: {
@@ -23,6 +27,11 @@ messageDirectives.directive("conversationPopup", ['$cookies', 'toastr', 'fire', 
                 $scope.isAuthor = true;
             }
 
+
+/**
+ * Sends a message to Firebase and scrolls message box
+ * @returns {undefined} nothing
+ */
             $scope.send = function() {
                 var user = $cookies.getObject('user');
                 var author = conversationFactory.createAuthorModel(user.uid, user.nick, user.img);
@@ -34,11 +43,19 @@ messageDirectives.directive("conversationPopup", ['$cookies', 'toastr', 'fire', 
                     $(".messages-wrapper").scrollTop($(".messages-wrapper")[0].scrollHeight);
                 }, 0);
             }
+/**
+ * Removes convarsation from firebase
+ * @returns {undefined} nothing
+ */
             $scope.removeConversation = function() {
                 $scope.conversations.$remove(id).then(function() {
                     toastr.success("Conversation deleted");
                 })
             }
+/**
+ * Saves edited message
+ * @returns {undefined} nothing
+ */
             $scope.saveEditedMessage = function(data, val) {
                 console.log("Saving edited message" + val + " and " + data)
                 $scope.conversation.messages[val]['edited'] = true;
@@ -46,6 +63,10 @@ messageDirectives.directive("conversationPopup", ['$cookies', 'toastr', 'fire', 
                 $scope.conversations.$save($scope.conversations[id]);
             }
 
+/**
+ * Removes messege
+ * @returns {undefined} nothing
+ */
             $scope.removeMessage = function(index) {
                 console.log("Removing message " +  $scope.conversations[id].messages[index]);
 
@@ -56,4 +77,5 @@ messageDirectives.directive("conversationPopup", ['$cookies', 'toastr', 'fire', 
             }
         }],
     };
-}]);
+};
+messageDirectives.directive("conversationPopup", ['$cookies', 'toastr', 'fire', '$filter', 'moment', 'conversationFactory', 'Auth', conversationDirective]);

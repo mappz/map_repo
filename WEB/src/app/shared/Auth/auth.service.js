@@ -11,6 +11,10 @@ authService.controller("authController", ['$scope', '$rootScope', 'Auth', '$loca
         $scope.auth = Auth.$getAuth();
     })
 
+/**
+ * Logout user by deleting cookies and performing unauth on firebase
+ * @returns {undefined} nothing
+ */
     $scope.logout = function() {
         Fire.ref.unauth();
         $cookies.remove("user");

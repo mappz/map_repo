@@ -1,5 +1,6 @@
 var loginModule = angular.module("loginModule");
 
+
 loginModule.controller("loginController", ["$scope", "$http", "toastr", '$cookies', 'fire', '$location', function($scope, $http, toastr, $cookies, Fire, $location) {
     var ref = Fire.ref;
 
@@ -13,6 +14,10 @@ loginModule.controller("loginController", ["$scope", "$http", "toastr", '$cookie
         users.push(snapshot.val());
     });
 
+/**
+ * Login user
+ * @returns {undefined} nothing
+ */
     $scope.login = function() {
         ref.authWithPassword({
             email: $scope.user.login,
